@@ -6,501 +6,116 @@
 <title>Statistiken – Forever Dudde</title>
 <style>
 :root {
-  --bg: #f6f8fb;
-  --surface: #ffffff;
-  --text: #14181f;
-  --muted: #5e6675;
-  --line: #e2e6ee;
-  --soft: #eef1f6;
-  --accent: #1d5bbf;
-  --accent-soft: #eaf2ff;
-  --gold: #c97306;
-  --gold-bg: #fef3c7;
-  --silver: #4b5563;
-  --silver-bg: #e5e7eb;
-  --bronze: #a84b08;
-  --bronze-bg: #ffedd5;
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  color-scheme: light;
+  --bg: #f6f8fb; --surface: #ffffff; --text: #14181f; --muted: #5e6675;
+  --line: #e2e6ee; --soft: #eef1f6; --accent: #1d5bbf; --accent-soft: #eaf2ff;
+  --gold: #c97306; --gold-bg: #fef3c7; --silver: #4b5563; --silver-bg: #e5e7eb;
+  --bronze: #a84b08; --bronze-bg: #ffedd5;
+  box-sizing: border-box; color-scheme: light;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-/* Dynamische Skalierung für 1080p, 1440p, 4K und Mobile */
-html {
-  font-size: clamp(16px, 0.55vw + 9px, 24px);
-  scroll-padding-top: env(safe-area-inset-top, 0px);
-}
+html { font-size: clamp(16px, 0.55vw + 9px, 24px); scroll-padding-top: env(safe-area-inset-top, 0px); }
 *, *::before, *::after { box-sizing: inherit; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 1rem/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+body { margin: 0; background: var(--bg); color: var(--text); font: 1rem/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: var(--accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.wrap {
-  width: min(86rem, 94vw);
-  margin: 0 auto;
-  padding: 0 1.2rem 4rem;
-}
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  padding: 1.15rem 0;
-  border-bottom: 1px solid var(--line);
-}
-header nav {
-  display: flex;
-  gap: 1.6rem;
-}
-header nav a {
-  text-decoration: none;
-  color: var(--muted);
-  font-size: 1.05rem;
-  font-weight: 500;
-  padding: 0.3rem 0;
-  border-bottom: 3px solid transparent;
-  transition: color .15s ease, border-color .15s ease;
-}
+.wrap { width: min(86rem, 94vw); margin: 0 auto; padding: 0 1.2rem 4rem; }
+header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 1.15rem 0; border-bottom: 1px solid var(--line); }
+header nav { display: flex; gap: 1.6rem; }
+header nav a { text-decoration: none; color: var(--muted); font-size: 1.05rem; font-weight: 500; padding: 0.3rem 0; border-bottom: 3px solid transparent; transition: color .15s, border-color .15s; }
 header nav a:hover { color: var(--text); }
-header nav a[aria-current] {
-  font-weight: 600;
-  color: var(--text);
-  border-bottom-color: var(--accent);
-}
+header nav a[aria-current] { font-weight: 600; color: var(--text); border-bottom-color: var(--accent); }
 .muted { color: var(--muted); font-size: .92rem; }
 h1 { font-size: 1.85rem; font-weight: 700; margin: 1.5rem 0 0.25rem; letter-spacing: -0.01em; }
 
-/* Große Übersichtskarten oben */
-dl {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
-  gap: 1rem;
-  margin: 1.35rem 0;
-}
-dl > div {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-  padding: 1.05rem 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  box-shadow: 0 2px 5px rgba(15, 23, 42, .03);
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-dl > div:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(15, 23, 42, .06);
-}
-.tot-ico {
-  width: 2.3rem;
-  height: 2.3rem;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 0.55rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
+dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 1rem; margin: 1.35rem 0; }
+dl > div { background: var(--surface); border: 1px solid var(--line); border-radius: 0.75rem; padding: 1.05rem 1.25rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 5px rgba(15,23,42,.03); transition: transform .15s, box-shadow .15s; }
+dl > div:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(15,23,42,.06); }
+.tot-ico { width: 2.3rem; height: 2.3rem; background: var(--bg); border: 1px solid var(--line); border-radius: 0.55rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .tot-ico .ico { width: 1.55rem; height: 1.55rem; }
 dt { color: var(--muted); font-size: .84rem; font-weight: 500; }
 dd { margin: 0.15rem 0 0; font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
 
-/* Klickbare Spieler-Leiste */
-.players-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin: 0 0 1.4rem;
-}
-.players-bar .lbl {
-  font-size: .9rem;
-  font-weight: 500;
-  color: var(--muted);
-  margin-right: 0.25rem;
-}
-.p-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 2rem;
-  padding: 0.4rem 0.95rem 0.4rem 0.5rem;
-  font: inherit;
-  font-size: .95rem;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0,0,0,.02);
-  transition: background .15s ease, border-color .15s ease, transform .12s ease, box-shadow .15s ease;
-}
-.p-chip:hover {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  color: var(--accent);
-  box-shadow: 0 3px 8px rgba(29, 91, 191, .1);
-}
+.players-bar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin: 0 0 1.4rem; }
+.players-bar .lbl { font-size: .9rem; font-weight: 500; color: var(--muted); margin-right: 0.25rem; }
+.p-chip { display: inline-flex; align-items: center; gap: 0.55rem; background: var(--surface); border: 1px solid var(--line); border-radius: 2rem; padding: 0.4rem 0.95rem 0.4rem 0.5rem; font: inherit; font-size: .95rem; font-weight: 500; color: var(--text); cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,.02); transition: background .15s, border-color .15s, transform .12s; }
+.p-chip:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 .p-chip:active { transform: scale(.97); }
 
-/* Hauptbereich (Kategorien, Suche & Tabelle) */
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 0.85rem;
-  padding: 1.25rem 1.5rem 1.6rem;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, .03);
-}
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem;
-  flex-wrap: wrap;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 0.85rem;
-}
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem 1.25rem;
-}
-.tabs button {
-  background: none;
-  border: 0;
-  border-bottom: 3px solid transparent;
-  color: var(--muted);
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.6rem 0.15rem;
-  margin-bottom: -1px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color .15s ease, border-color .15s ease;
-}
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 0.85rem; padding: 1.25rem 1.5rem 1.6rem; box-shadow: 0 2px 6px rgba(15,23,42,.03); }
+.toolbar { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; border-bottom: 1px solid var(--line); margin-bottom: 0.85rem; }
+.tabs { display: flex; flex-wrap: wrap; gap: 0.3rem 1.25rem; }
+.tabs button { background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted); font: inherit; font-size: 1rem; font-weight: 500; padding: 0.6rem 0.15rem; margin-bottom: -1px; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; }
 .tabs button:hover { color: var(--text); }
-.tabs button[aria-pressed="true"] {
-  color: var(--accent);
-  border-color: var(--accent);
-  font-weight: 600;
-}
-.search-input {
-  width: 17rem;
-  max-width: 100%;
-  font: inherit;
-  font-size: .95rem;
-  color: inherit;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.85rem;
-  margin-bottom: 0.55rem;
-  transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
-}
-.search-input:focus {
-  background: var(--surface);
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-  outline: none;
-}
+.tabs button[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); font-weight: 600; }
+.search-input { width: 17rem; max-width: 100%; font: inherit; font-size: .95rem; color: inherit; background: var(--bg); border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.5rem 0.85rem; margin-bottom: 0.55rem; }
+.search-input:focus { background: var(--surface); border-color: var(--accent); outline: none; }
 
 table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-th {
-  text-align: left;
-  font-weight: 600;
-  font-size: .82rem;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  color: var(--muted);
-  padding: 0.65rem 0.75rem;
-  border-bottom: 1px solid var(--line);
-}
-td {
-  padding: 0.75rem 0.75rem;
-  border-bottom: 1px solid var(--line);
-  font-size: 1.02rem;
-  vertical-align: middle;
-}
+th { text-align: left; font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--line); }
+td { padding: 0.75rem 0.75rem; border-bottom: 1px solid var(--line); font-size: 1.02rem; vertical-align: middle; }
 tbody tr:last-child td { border-bottom: 0; }
-tbody tr { transition: background .12s ease; }
 tbody tr:hover { background: var(--bg); }
 .num { text-align: right; white-space: nowrap; font-weight: 600; }
 th.num { text-align: right; }
 
-.link {
-  background: none;
-  border: 0;
-  padding: 0.15rem 0;
-  font: inherit;
-  font-weight: 500;
-  color: var(--accent);
-  cursor: pointer;
-  text-align: left;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-.link:hover span { text-decoration: underline; }
-.plink {
-  background: none;
-  border: 0;
-  padding: 0.15rem 0;
-  font: inherit;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-  text-align: left;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  transition: color .12s ease;
-}
+.link, .plink { background: none; border: 0; padding: 0.15rem 0; font: inherit; font-weight: 500; cursor: pointer; text-align: left; display: inline-flex; align-items: center; }
+.link { color: var(--accent); gap: 0.7rem; }
+.link:hover span, .plink:hover span { text-decoration: underline; }
+.plink { color: var(--text); gap: 0.55rem; }
 .plink:hover { color: var(--accent); }
-.plink:hover span { text-decoration: underline; }
+.lead-cell { display: inline-flex; align-items: center; gap: 0.6rem; }
+.lead-val { color: var(--muted); font-size: .88rem; font-weight: 400; }
 
-.lead-cell {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-.lead-val {
-  color: var(--muted);
-  font-size: .88rem;
-  font-weight: 400;
-}
-
-/* Icons & Spielerköpfe (Nearest-Neighbour, skaliert mit Bildschirm) */
-.ico {
-  width: 1.45rem;
-  height: 1.45rem;
-  object-fit: contain;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  flex-shrink: 0;
-  pointer-events: none;
-}
-.head {
-  width: 1.55rem;
-  height: 1.55rem;
-  border-radius: 0.22rem;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  flex-shrink: 0;
-  background: var(--soft);
-}
+.ico { width: 1.45rem; height: 1.45rem; object-fit: contain; image-rendering: pixelated; image-rendering: crisp-edges; flex-shrink: 0; pointer-events: none; }
+.head { width: 1.55rem; height: 1.55rem; border-radius: 0.22rem; image-rendering: pixelated; image-rendering: crisp-edges; flex-shrink: 0; background: var(--soft); }
 .empty { color: var(--muted); padding: 2rem 0.75rem; text-align: center; }
 
-/* Dezente Animationen für Tabellenwechsel & Fenster */
-@keyframes fadeInRows {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeInRows { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 .anim-list tr { animation: fadeInRows .16s ease-out both; }
 
-dialog {
-  width: min(48rem, calc(100vw - 2rem));
-  max-height: 86vh;
-  overflow: auto;
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 0.9rem;
-  padding: 1.5rem 1.75rem;
-  box-shadow: 0 24px 54px rgba(15, 23, 42, .18);
-}
-dialog[open] {
-  animation: dlgOpen .22s cubic-bezier(.16, 1, .3, 1) forwards;
-}
-dialog::backdrop {
-  background: rgba(15, 23, 42, .4);
-  backdrop-filter: blur(3px);
-  animation: backdropFade .2s ease forwards;
-}
-@keyframes dlgOpen {
-  from { opacity: 0; transform: translateY(12px) scale(.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes backdropFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+dialog { width: min(48rem, calc(100vw - 2rem)); max-height: 86vh; overflow: auto; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 0.9rem; padding: 1.5rem 1.75rem; box-shadow: 0 24px 54px rgba(15,23,42,.18); }
+dialog[open] { animation: dlgOpen .22s cubic-bezier(.16, 1, .3, 1) forwards; }
+dialog::backdrop { background: rgba(15,23,42,.4); backdrop-filter: blur(3px); }
+@keyframes dlgOpen { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-.dh {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
-  position: sticky;
-  top: -1.5rem;
-  background: var(--surface);
-  padding: 0.25rem 0 0.9rem;
-  border-bottom: 1px solid var(--line);
-  z-index: 2;
-}
-.dh h2 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
+.dh { display: flex; justify-content: space-between; gap: 1rem; align-items: center; position: sticky; top: -1.5rem; background: var(--surface); padding: 0.25rem 0 0.9rem; border-bottom: 1px solid var(--line); z-index: 2; }
+.dh h2 { font-size: 1.35rem; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 0.65rem; }
 .dh h2 .ico { width: 1.75rem; height: 1.75rem; }
 .dh h2 .head { width: 1.85rem; height: 1.85rem; }
-.dh button {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 0.45rem;
-  color: inherit;
-  font: inherit;
-  font-size: .92rem;
-  font-weight: 500;
-  padding: 0.4rem 0.9rem;
-  cursor: pointer;
-  transition: background .15s ease, border-color .15s ease;
-}
-.dh button:hover { background: var(--soft); border-color: #cfd5e0; }
+.dh button { background: var(--bg); border: 1px solid var(--line); border-radius: 0.45rem; color: inherit; font: inherit; font-size: .92rem; font-weight: 500; padding: 0.4rem 0.9rem; cursor: pointer; }
+.dh button:hover { background: var(--soft); }
 
-/* Tribüne für Plätze 1-3 */
-.podium {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.85rem;
-  align-items: end;
-  margin: 1.2rem 0 1.4rem;
-  padding: 1.25rem 1rem 0;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-}
-.pod-slot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.pod-player {
-  background: none;
-  border: 0;
-  padding: 0.3rem;
-  font: inherit;
-  color: var(--text);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  transition: transform .15s ease, color .15s ease;
-}
+.podium { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; align-items: end; margin: 1.2rem 0 1.4rem; padding: 1.25rem 1rem 0; background: var(--bg); border: 1px solid var(--line); border-radius: 0.75rem; }
+.pod-slot { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.pod-player { background: none; border: 0; padding: 0.3rem; font: inherit; color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; transition: transform .15s, color .15s; }
 .pod-player:hover { transform: translateY(-3px); color: var(--accent); }
-.pod-player .head {
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 0.3rem;
-  box-shadow: 0 3px 8px rgba(0,0,0,.12);
-}
-.pod-1 .pod-player .head {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-.pod-name {
-  font-weight: 600;
-  font-size: 1rem;
-  max-width: 10rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.pod-val {
-  font-size: .88rem;
-  font-weight: 500;
-  color: var(--muted);
-  margin-bottom: 0.55rem;
-  font-variant-numeric: tabular-nums;
-}
-.pod-bar {
-  width: 100%;
-  border-radius: 0.5rem 0.5rem 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.1rem;
-  border: 1px solid transparent;
-  border-bottom: 0;
-}
+.pod-player .head { width: 2.8rem; height: 2.8rem; border-radius: 0.3rem; box-shadow: 0 3px 8px rgba(0,0,0,.12); }
+.pod-1 .pod-player .head { width: 3.5rem; height: 3.5rem; }
+.pod-name { font-weight: 600; font-size: 1rem; max-width: 10rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pod-val { font-size: .88rem; font-weight: 500; color: var(--muted); margin-bottom: 0.55rem; }
+.pod-bar { width: 100%; border-radius: 0.5rem 0.5rem 0 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; border: 1px solid transparent; border-bottom: 0; }
 .pod-1 .pod-bar { height: 4.6rem; background: var(--gold-bg); color: var(--gold); border-color: #fde68a; font-size: 1.3rem; }
 .pod-2 .pod-bar { height: 3.4rem; background: var(--silver-bg); color: var(--silver); border-color: #d1d5db; }
 .pod-3 .pod-bar { height: 2.5rem; background: var(--bronze-bg); color: var(--bronze); border-color: #fed7aa; }
 
-/* Rang-Badges hinter den Stats im Spielerfenster */
-.rank-badge {
-  display: inline-block;
-  min-width: 2.4rem;
-  text-align: center;
-  font-size: .85rem;
-  font-weight: 700;
-  padding: 0.2rem 0.55rem;
-  border-radius: 1rem;
-  background: var(--soft);
-  color: var(--muted);
-}
+.rank-badge { display: inline-block; min-width: 2.4rem; text-align: center; font-size: .85rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 1rem; background: var(--soft); color: var(--muted); }
 .rank-1 { background: var(--gold-bg); color: var(--gold); }
 .rank-2 { background: var(--silver-bg); color: var(--silver); }
 .rank-3 { background: var(--bronze-bg); color: var(--bronze); }
+.share { display: inline-block; width: 5.5rem; height: 0.45rem; border-radius: 0.25rem; overflow: hidden; background: var(--soft); vertical-align: middle; margin-left: 0.6rem; }
+.share i { display: block; height: 100%; background: var(--accent); }
 
-.share {
-  display: inline-block;
-  width: 5.5rem;
-  height: 0.45rem;
-  border-radius: 0.25rem;
-  overflow: hidden;
-  background: var(--soft);
-  vertical-align: middle;
-  margin-left: 0.6rem;
-}
-.share i { display: block; height: 100%; background: var(--accent); border-radius: 0.25rem; }
-
-/* Mobile Optimierungen */
 @media (max-width: 720px) {
   .wrap { width: 100%; padding: 0 0.9rem 3rem; }
-  h1 { font-size: 1.45rem; margin-top: 1.1rem; }
   dl { grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
-  dl > div { padding: 0.8rem 0.9rem; gap: 0.7rem; }
-  .tot-ico { width: 2rem; height: 2rem; }
-  dd { font-size: 1.25rem; }
   .panel { padding: 0.9rem; }
   .toolbar { flex-direction: column; align-items: stretch; gap: 0.65rem; }
-  .tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 2px;
-  }
+  .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
-  .search-input { width: 100%; margin-bottom: 0.6rem; }
+  .search-input { width: 100%; }
   .col-lead, .share { display: none; }
-  dialog {
-    width: 100%;
-    max-width: 100%;
-    max-height: 90vh;
-    margin: auto 0 0 0;
-    border-radius: 1rem 1rem 0 0;
-    padding: 1.15rem 1rem 1.5rem;
-  }
-  .podium { gap: 0.4rem; padding: 0.85rem 0.5rem 0; }
-  .pod-name { max-width: 5.8rem; font-size: .85rem; }
+  dialog { width: 100%; max-width: 100%; max-height: 90vh; margin: auto 0 0 0; border-radius: 1rem 1rem 0 0; padding: 1.15rem 1rem 1.5rem; }
 }
 </style>
 </head>
@@ -508,7 +123,7 @@ dialog::backdrop {
 <div class="wrap">
   <header>
     <nav><a href="index.html">Forever Dudde</a><a href="stats.html" aria-current="page">Statistiken</a></nav>
-    <span class="muted" id="upd"></span>
+    <span class="muted" id="upd">Lade Daten …</span>
   </header>
   <h1>Server-Statistiken</h1>
   <p class="muted">Summe aller Spieler. Statistik oder Spieler anklicken, um Details und Platzierungen zu sehen.</p>
@@ -521,19 +136,12 @@ dialog::backdrop {
       <input id="q" class="search-input" type="search" placeholder="Statistik suchen …" aria-label="Statistik suchen">
     </div>
     <table>
-      <thead>
-        <tr>
-          <th>Statistik</th>
-          <th class="col-lead">Platz 1</th>
-          <th class="num">Gesamt</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Statistik</th><th class="col-lead">Platz 1</th><th class="num">Gesamt</th></tr></thead>
       <tbody id="list" class="anim-list"></tbody>
     </table>
   </div>
 </div>
 
-<!-- Dialog 1: Statistik-Rangliste mit Tribüne (Plätze 1-3) -->
 <dialog id="dlg">
   <div class="dh"><h2 id="dt"></h2><button id="x" type="button">Schließen</button></div>
   <p class="muted" id="ds" style="margin:0.65rem 0 0.8rem"></p>
@@ -544,7 +152,6 @@ dialog::backdrop {
   </table>
 </dialog>
 
-<!-- Dialog 2: Einzelspieler-Statistiken mit Rang-Anzeige -->
 <dialog id="pdlg">
   <div class="dh"><h2 id="pdt"></h2><button id="px" type="button">Schließen</button></div>
   <p class="muted" id="pds" style="margin:0.65rem 0 0.8rem"></p>
@@ -559,9 +166,7 @@ dialog::backdrop {
 </dialog>
 
 <script>
-// Echte Daten-URL aus deinem foreverdudde-stats Repo:
 var DATA_URL = "https://raw.githubusercontent.com/67sinan67/foreverdudde-stats/main/stats.json";
-
 var WIKI_FP = "https://minecraft.wiki/w/Special:FilePath/";
 
 var P=["Mika","Lena","Tom","Ayla","Dudenhofen"];
@@ -569,4 +174,315 @@ function mk(v){var p=P.map(function(n,i){return [n,v[i]]}).filter(function(x){re
 var DEMO={updated:new Date().toISOString(),players:5,c:{
   custom:{"minecraft:walk_one_cm":mk([9800000,6400000,3100000,2200000,12500000]),"minecraft:sprint_one_cm":mk([4100000,2900000,800000,1500000,6000000]),"minecraft:aviate_one_cm":mk([21000000,0,5000000,0,33000000]),"minecraft:play_time":mk([5400000,3800000,2100000,1700000,8900000]),"minecraft:deaths":mk([41,12,7,19,63]),"minecraft:mob_kills":mk([2300,1100,420,900,3900]),"minecraft:jump":mk([8200,5100,2300,3000,14000])},
   mined:{"minecraft:stone":mk([21000,9000,15000,3000,40000]),"minecraft:diamond_ore":mk([140,60,0,22,310]),"minecraft:oak_log":mk([900,2200,400,1500,1300])},
-  crafted:{"
+  crafted:{"minecraft:torch":mk([900,300,1200,200,2400]),"minecraft:bread":mk([0,320,0,140,60])},
+  killed:{"minecraft:zombie":mk([800,300,100,200,1500]),"minecraft:creeper":mk([140,90,60,110,400])},
+  killed_by:{"minecraft:creeper":mk([20,4,3,9,31])}
+}};
+
+var CATS=[["custom","Allgemein"],["mined","Abgebaut"],["crafted","Hergestellt"],["used","Benutzt"],["broken","Kaputtgegangen"],["picked_up","Aufgehoben"],["dropped","Fallen gelassen"],["killed","Getötet"],["killed_by","Gestorben durch"]];
+
+var L={
+  "minecraft:walk_one_cm":"Zu Fuß gegangen","minecraft:sprint_one_cm":"Gesprintet","minecraft:crouch_one_cm":"Geschlichen",
+  "minecraft:walk_on_water_one_cm":"Auf Wasser gelaufen","minecraft:walk_under_water_one_cm":"Unter Wasser gelaufen",
+  "minecraft:swim_one_cm":"Geschwommen","minecraft:fly_one_cm":"Geflogen","minecraft:aviate_one_cm":"Mit Elytra geflogen",
+  "minecraft:boat_one_cm":"Mit Boot gefahren","minecraft:horse_one_cm":"Auf Pferd geritten","minecraft:pig_one_cm":"Auf Schwein geritten",
+  "minecraft:strider_one_cm":"Auf Schreiter geritten","minecraft:camel_one_cm":"Auf Kamel geritten","minecraft:happy_ghast_one_cm":"Auf fröhlichem Ghast geflogen",
+  "minecraft:nautilus_one_cm":"Auf Nautilus geritten","minecraft:minecart_one_cm":"Mit Lore gefahren","minecraft:climb_one_cm":"Geklettert",
+  "minecraft:fall_one_cm":"Gefallen","minecraft:play_time":"Spielzeit","minecraft:play_one_minute":"Spielzeit","minecraft:total_world_time":"Zeit in der Welt",
+  "minecraft:sneak_time":"Schleichzeit","minecraft:leave_game":"Spiele verlassen","minecraft:deaths":"Tode","minecraft:mob_kills":"Mobs getötet",
+  "minecraft:player_kills":"Spieler getötet","minecraft:jump":"Sprünge","minecraft:drop":"Gegenstände fallen gelassen",
+  "minecraft:damage_dealt":"Schaden verursacht","minecraft:damage_dealt_absorbed":"Verursachter Schaden (absorbiert)",
+  "minecraft:damage_dealt_resisted":"Verursachter Schaden (widerstanden)","minecraft:damage_taken":"Schaden erlitten",
+  "minecraft:damage_absorbed":"Schaden absorbiert","minecraft:damage_resisted":"Schaden widerstanden",
+  "minecraft:damage_blocked_by_shield":"Schaden mit Schild abgewehrt","minecraft:target_hit":"Zielblock getroffen",
+  "minecraft:animals_bred":"Tiere gezüchtet","minecraft:fish_caught":"Fische gefangen","minecraft:talked_to_villager":"Mit Dorfbewohnern gesprochen",
+  "minecraft:traded_with_villager":"Mit Dorfbewohnern gehandelt","minecraft:raid_trigger":"Überfälle ausgelöst","minecraft:raid_win":"Überfälle gewonnen",
+  "minecraft:sleep_in_bed":"Im Bett geschlafen","minecraft:eat_cake_slice":"Kuchenstücke gegessen","minecraft:pot_flower":"Blumen eingetopft",
+  "minecraft:bell_ring":"Glocken geläutet","minecraft:open_chest":"Truhen geöffnet","minecraft:trigger_trapped_chest":"Redstone-Truhen ausgelöst",
+  "minecraft:open_enderchest":"Endertruhen geöffnet","minecraft:open_shulker_box":"Shulkerkisten geöffnet","minecraft:open_barrel":"Fässer geöffnet",
+  "minecraft:inspect_hopper":"Trichter durchsucht","minecraft:inspect_dropper":"Spender durchsucht","minecraft:inspect_dispenser":"Werfer durchsucht",
+  "minecraft:interact_with_crafting_table":"Werkbänke benutzt","minecraft:interact_with_furnace":"Öfen benutzt",
+  "minecraft:interact_with_blast_furnace":"Schmelzöfen benutzt","minecraft:interact_with_smoker":"Räucheröfen benutzt",
+  "minecraft:interact_with_campfire":"Lagerfeuer benutzt","minecraft:interact_with_anvil":"Ambosse benutzt",
+  "minecraft:interact_with_grindstone":"Schleifsteine benutzt","minecraft:interact_with_smithing_table":"Schmiedetische benutzt",
+  "minecraft:interact_with_stonecutter":"Steinsägen benutzt","minecraft:interact_with_cartography_table":"Kartentische benutzt",
+  "minecraft:interact_with_loom":"Webstühle benutzt","minecraft:interact_with_brewingstand":"Braustände benutzt",
+  "minecraft:interact_with_beacon":"Leuchtfeuer benutzt","minecraft:interact_with_lectern":"Lesepulte benutzt",
+  "minecraft:enchant_item":"Gegenstände verzaubert","minecraft:play_record":"Schallplatten abgespielt",
+  "minecraft:play_noteblock":"Notenblöcke gespielt","minecraft:tune_noteblock":"Notenblöcke gestimmt",
+  "minecraft:fill_cauldron":"Kessel gefüllt","minecraft:use_cauldron":"Wasser aus Kesseln entnommen",
+  "minecraft:clean_armor":"Rüstung gewaschen","minecraft:clean_banner":"Banner gewaschen","minecraft:clean_shulker_box":"Shulkerkisten entfärbt"
+};
+
+var CUSTOM_ICONS={
+  "minecraft:walk_one_cm":"Invicon_Diamond_Boots.png","minecraft:sprint_one_cm":"Speed.png","minecraft:crouch_one_cm":"Invicon_Leather_Boots.png",
+  "minecraft:walk_on_water_one_cm":"Invicon_Lily_Pad.png","minecraft:walk_under_water_one_cm":"Invicon_Turtle_Shell.png",
+  "minecraft:swim_one_cm":"Invicon_Water_Bucket.png","minecraft:fly_one_cm":"Levitation.png","minecraft:aviate_one_cm":"Invicon_Elytra.png",
+  "minecraft:boat_one_cm":"Invicon_Oak_Boat.png","minecraft:horse_one_cm":"HorseFace.png","minecraft:pig_one_cm":"PigFace.png",
+  "minecraft:strider_one_cm":"StriderFace.png","minecraft:camel_one_cm":"CamelFace.png","minecraft:happy_ghast_one_cm":"HappyGhastFace.png",
+  "minecraft:nautilus_one_cm":"Invicon_Nautilus_Shell.png","minecraft:minecart_one_cm":"Invicon_Minecart.png","minecraft:climb_one_cm":"Invicon_Ladder.png",
+  "minecraft:fall_one_cm":"Slow_Falling.png","minecraft:play_time":"Invicon_Clock.png","minecraft:play_one_minute":"Invicon_Clock.png",
+  "minecraft:total_world_time":"Invicon_Clock.png","minecraft:sneak_time":"Slowness.png","minecraft:leave_game":"Invicon_Oak_Door.png",
+  "minecraft:deaths":"Invicon_Skeleton_Skull.png","minecraft:mob_kills":"Invicon_Diamond_Sword.png","minecraft:player_kills":"Invicon_Netherite_Sword.png",
+  "minecraft:jump":"Jump_Boost.png","minecraft:drop":"Invicon_Dropper.png","minecraft:damage_dealt":"Strength.png",
+  "minecraft:damage_dealt_absorbed":"Absorption.png","minecraft:damage_dealt_resisted":"Resistance.png","minecraft:damage_taken":"Health_Boost.png",
+  "minecraft:damage_absorbed":"Invicon_Golden_Apple.png","minecraft:damage_resisted":"Resistance.png","minecraft:damage_blocked_by_shield":"Invicon_Shield.png",
+  "minecraft:target_hit":"Invicon_Target.png","minecraft:animals_bred":"Invicon_Wheat.png","minecraft:fish_caught":"Invicon_Fishing_Rod.png",
+  "minecraft:talked_to_villager":"VillagerFace.png","minecraft:traded_with_villager":"Invicon_Emerald.png","minecraft:raid_trigger":"Bad_Omen.png",
+  "minecraft:raid_win":"Hero_of_the_Village.png","minecraft:sleep_in_bed":"Invicon_Red_Bed.png","minecraft:eat_cake_slice":"Invicon_Cake.png",
+  "minecraft:pot_flower":"Invicon_Flower_Pot.png","minecraft:bell_ring":"Invicon_Bell.png","minecraft:open_chest":"Invicon_Chest.png",
+  "minecraft:trigger_trapped_chest":"Invicon_Trapped_Chest.png","minecraft:open_enderchest":"Invicon_Ender_Chest.png",
+  "minecraft:open_shulker_box":"Invicon_Shulker_Box.png","minecraft:open_barrel":"Invicon_Barrel.png","minecraft:inspect_hopper":"Invicon_Hopper.png",
+  "minecraft:inspect_dropper":"Invicon_Dropper.png","minecraft:inspect_dispenser":"Invicon_Dispenser.png",
+  "minecraft:interact_with_crafting_table":"Invicon_Crafting_Table.png","minecraft:interact_with_furnace":"Invicon_Furnace.png",
+  "minecraft:interact_with_blast_furnace":"Invicon_Blast_Furnace.png","minecraft:interact_with_smoker":"Invicon_Smoker.png",
+  "minecraft:interact_with_campfire":"Invicon_Campfire.png","minecraft:interact_with_anvil":"Invicon_Anvil.png",
+  "minecraft:interact_with_grindstone":"Invicon_Grindstone.png","minecraft:interact_with_smithing_table":"Invicon_Smithing_Table.png",
+  "minecraft:interact_with_stonecutter":"Invicon_Stonecutter.png","minecraft:interact_with_cartography_table":"Invicon_Cartography_Table.png",
+  "minecraft:interact_with_loom":"Invicon_Loom.png","minecraft:interact_with_brewingstand":"Invicon_Brewing_Stand.png",
+  "minecraft:interact_with_beacon":"Invicon_Beacon.png","minecraft:interact_with_lectern":"Invicon_Lectern.png",
+  "minecraft:enchant_item":"Invicon_Enchanting_Table.png","minecraft:play_record":"Invicon_Jukebox.png",
+  "minecraft:play_noteblock":"Invicon_Note_Block.png","minecraft:tune_noteblock":"Invicon_Note_Block.png",
+  "minecraft:fill_cauldron":"Invicon_Cauldron.png","minecraft:use_cauldron":"Invicon_Cauldron.png",
+  "minecraft:clean_armor":"Invicon_Leather_Tunic.png","minecraft:clean_banner":"Invicon_White_Banner.png","minecraft:clean_shulker_box":"Invicon_Shulker_Box.png"
+};
+
+var ITEM_NAME_MAP={
+  "coal_block":"Block_of_Coal","iron_block":"Block_of_Iron","gold_block":"Block_of_Gold","diamond_block":"Block_of_Diamond",
+  "emerald_block":"Block_of_Emerald","lapis_block":"Block_of_Lapis_Lazuli","redstone_block":"Block_of_Redstone","quartz_block":"Block_of_Quartz",
+  "netherite_block":"Block_of_Netherite","copper_block":"Block_of_Copper","amethyst_block":"Block_of_Amethyst","raw_iron_block":"Block_of_Raw_Iron",
+  "raw_gold_block":"Block_of_Raw_Gold","raw_copper_block":"Block_of_Raw_Copper","bamboo_block":"Block_of_Bamboo","stripped_bamboo_block":"Block_of_Stripped_Bamboo",
+  "resin_block":"Block_of_Resin","hay_block":"Hay_Bale","smooth_quartz":"Smooth_Quartz_Block","beef":"Raw_Beef","cooked_beef":"Steak",
+  "porkchop":"Raw_Porkchop","chicken":"Raw_Chicken","mutton":"Raw_Mutton","rabbit":"Raw_Rabbit","cod":"Raw_Cod","salmon":"Raw_Salmon",
+  "chest_minecart":"Minecart_with_Chest","furnace_minecart":"Minecart_with_Furnace","tnt_minecart":"Minecart_with_TNT","hopper_minecart":"Minecart_with_Hopper",
+  "command_block_minecart":"Minecart_with_Command_Block","redstone":"Redstone_Dust","redstone_wire":"Redstone_Dust","quartz":"Nether_Quartz",
+  "slime_ball":"Slimeball","writable_book":"Book_and_Quill","ender_eye":"Eye_of_Ender","experience_bottle":"Bottle_o'_Enchanting",
+  "totem_of_undying":"Totem_of_Undying","heart_of_the_sea":"Heart_of_the_Sea","rabbit_foot":"Rabbit's_Foot","dragon_breath":"Dragon's_Breath",
+  "turtle_helmet":"Turtle_Shell","leather_helmet":"Leather_Cap","leather_chestplate":"Leather_Tunic","leather_leggings":"Leather_Pants",
+  "cod_bucket":"Bucket_of_Cod","salmon_bucket":"Bucket_of_Salmon","pufferfish_bucket":"Bucket_of_Pufferfish","tropical_fish_bucket":"Bucket_of_Tropical_Fish",
+  "axolotl_bucket":"Bucket_of_Axolotl","tadpole_bucket":"Bucket_of_Tadpole","map":"Empty_Map","filled_map":"Map","comparator":"Redstone_Comparator",
+  "repeater":"Redstone_Repeater","tnt":"TNT","jack_o_lantern":"Jack_o'Lantern","lily_of_the_valley":"Lily_of_the_Valley","carrot_on_a_stick":"Carrot_on_a_Stick",
+  "warped_fungus_on_a_stick":"Warped_Fungus_on_a_Stick","petrified_oak_slab":"Oak_Slab","netherite_upgrade_smithing_template":"Netherite_Upgrade",
+  "carrots":"Carrot","potatoes":"Potato","beetroots":"Beetroot","sweet_berry_bush":"Sweet_Berries","cave_vines":"Glow_Berries",
+  "cave_vines_plant":"Glow_Berries","twisting_vines_plant":"Twisting_Vines","weeping_vines_plant":"Weeping_Vines","kelp_plant":"Kelp",
+  "bamboo_sapling":"Bamboo","melon_stem":"Melon_Seeds","attached_melon_stem":"Melon_Seeds","pumpkin_stem":"Pumpkin_Seeds",
+  "attached_pumpkin_stem":"Pumpkin_Seeds","tall_seagrass":"Seagrass","piston_head":"Piston","moving_piston":"Piston",
+  "powder_snow_cauldron":"Cauldron","lava_cauldron":"Cauldron","water_cauldron":"Cauldron","candle_cake":"Cake"
+};
+
+function toTC(id){return id.split("_").map(function(w){return w?w.charAt(0).toUpperCase()+w.slice(1):""}).join("_")}
+function toPC(id){return id.split("_").map(function(w){return w?w.charAt(0).toUpperCase()+w.slice(1):""}).join("")}
+
+function getIconCandidates(k, c){
+  var id = k.replace(/^minecraft:/, "");
+  if(c === "custom"){
+    var cf = CUSTOM_ICONS[k] || CUSTOM_ICONS["minecraft:" + id];
+    if(cf){
+      var l = [WIKI_FP + cf];
+      if(/Face\.png$/.test(cf)) l.push(WIKI_FP + cf.replace(/([a-z])([A-Z])/g, "$1_$2"));
+      return l;
+    }
+    return [WIKI_FP + "Invicon_" + toTC(id) + ".png"];
+  }
+  if(c === "killed" || c === "killed_by"){
+    if(id === "player") return [WIKI_FP + "AlexFace.png", WIKI_FP + "Alex_Face.png"];
+    var pc = toPC(id), tc = toTC(id);
+    return [WIKI_FP + pc + "Face.png", WIKI_FP + tc + "_Face.png", WIKI_FP + "Invicon_" + tc + "_Spawn_Egg.png", WIKI_FP + "Invicon_" + tc + ".png"];
+  }
+  var norm = id.replace(/^waxed_/, "").replace(/_wall_hanging_sign$/, "_hanging_sign").replace(/_wall_sign$/, "_sign")
+               .replace(/_wall_banner$/, "_banner").replace(/_wall_head$/, "_head").replace(/_wall_skull$/, "_skull")
+               .replace(/_wall_torch$/, "_torch").replace(/_wall_fan$/, "_fan").replace(/^wall_torch$/, "torch")
+               .replace(/_candle_cake$/, "_candle").replace(/^potted_/, "");
+  var u = [];
+  if(ITEM_NAME_MAP[norm]) u.push(WIKI_FP + "Invicon_" + ITEM_NAME_MAP[norm] + ".png");
+  if(/_armor_trim_smithing_template$/.test(norm)) u.push(WIKI_FP + "Invicon_" + toTC(norm.replace(/_smithing_template$/, "")) + ".png");
+  if(/_banner_pattern$/.test(norm)) u.push(WIKI_FP + "Invicon_Banner_Pattern.png");
+  var t = toTC(norm);
+  u.push(WIKI_FP + "Invicon_" + t + ".png");
+  var lp = t.replace(/_Of_/g, "_of_").replace(/_The_/g, "_the_").replace(/_On_/g, "_on_").replace(/_A_/g, "_a_").replace(/_With_/g, "_with_");
+  if(lp !== t) u.push(WIKI_FP + "Invicon_" + lp + ".png");
+  if(/_block$/.test(norm)) u.push(WIKI_FP + "Invicon_Block_of_" + toTC(norm.replace(/_block$/, "")) + ".png");
+  u.push(WIKI_FP + t + ".png");
+  return u;
+}
+
+window.icoErr = function(img){
+  var l = (img.getAttribute("data-fb") || "").split("|").filter(Boolean);
+  var i = parseInt(img.getAttribute("data-idx") || "0", 10) + 1;
+  if(i < l.length){ img.setAttribute("data-idx", String(i)); img.src = l[i]; }
+  else { img.style.display = "none"; }
+};
+
+function iconHtml(k, c){
+  var u = getIconCandidates(k, c);
+  return u.length ? "<img class=\"ico\" src=\"" + esc(u[0]) + "\" data-fb=\"" + esc(u.join("|")) + "\" data-idx=\"0\" alt=\"\" loading=\"lazy\" onerror=\"icoErr(this)\">" : "";
+}
+function headHtml(name){
+  var u = encodeURIComponent(name);
+  var fb = ["https://mc-heads.net/avatar/" + u + "/64", "https://minotar.net/helm/" + u + "/64.png", WIKI_FP + "AlexFace.png"];
+  return "<img class=\"head\" src=\"" + esc(fb[0]) + "\" data-fb=\"" + esc(fb.join("|")) + "\" data-idx=\"0\" alt=\"\" loading=\"lazy\" onerror=\"icoErr(this)\">";
+}
+
+var data=DEMO,demo=true,cat="custom",q="",open=null,openPlayer=null,pcat="custom",pq="";
+var $=function(s){return document.querySelector(s)};
+function esc(s){var d=document.createElement("div");d.textContent=String(s);return d.innerHTML}
+function nf(v,d){return Number(v||0).toLocaleString("de",{maximumFractionDigits:d||0})}
+function label(k){return L[k]||k.replace("minecraft:","").replace(/_/g," ").replace(/^./,function(c){return c.toUpperCase()})}
+function fmt(k,v,c){
+  if(c==="custom"){
+    if(/_one_cm$/.test(k)){var m=v/100;return m>=1000?nf(m/1000,1)+" km":nf(m)+" m"}
+    if(/play_time|play_one_minute|sneak_time|total_world_time/.test(k))return nf(v/72000,1)+" h";
+  }
+  return nf(v);
+}
+function sumC(c,f){var o=(data.c||{})[c]||{},s=0;Object.keys(o).forEach(function(k){if(!f||f(k))s+=(o[k]&&o[k].t)||0});return s}
+function entries(c){var o=(data.c||{})[c]||{};return Object.keys(o).filter(function(k){return !/time_since_/.test(k)}).map(function(k){return [k,o[k]]})}
+
+function allPlayers(){
+  var map={};
+  Object.keys(data.c||{}).forEach(function(c){
+    var o=data.c[c]||{};
+    Object.keys(o).forEach(function(k){
+      ((o[k]||{}).p||[]).forEach(function(r){ if(r&&r[0]) map[r[0]]=true; });
+    });
+  });
+  return Object.keys(map).sort(function(a,b){return a.localeCompare(b,"de")});
+}
+
+function renderTot(){
+  var t=[
+    ["Spielzeit",nf(sumC("custom",function(k){return /play_time|play_one_minute/.test(k)})/72000,1)+" h","minecraft:play_time","custom"],
+    ["Strecke",nf(sumC("custom",function(k){return /_one_cm$/.test(k)})/100000,1)+" km","minecraft:walk_one_cm","custom"],
+    ["Blöcke abgebaut",nf(sumC("mined")),"minecraft:diamond_pickaxe","used"],
+    ["Mobs getötet",nf(sumC("custom",function(k){return /mob_kills/.test(k)})),"minecraft:mob_kills","custom"],
+    ["Tode",nf(sumC("custom",function(k){return /:deaths$/.test(k)})),"minecraft:deaths","custom"]
+  ];
+  $("#tot").innerHTML=t.map(function(x){
+    return "<div><div class=\"tot-ico\">"+iconHtml(x[2],x[3])+"</div><div><dt>"+esc(x[0])+"</dt><dd>"+esc(x[1])+"</dd></div></div>";
+  }).join("");
+}
+
+function renderPlayersBar(){
+  var ps=allPlayers();
+  $("#pbar").innerHTML=ps.length?"<span class=\"lbl\">Spieler ("+ps.length+"):</span>"+ps.map(function(n){
+    return "<button type=\"button\" class=\"p-chip\" data-p=\""+esc(n)+"\">"+headHtml(n)+"<span>"+esc(n)+"</span></button>";
+  }).join(""):"";
+}
+
+function renderTabs(){
+  $("#tabs").innerHTML=CATS.filter(function(c){return (data.c||{})[c[0]]}).map(function(c){
+    return "<button type=\"button\" data-c=\""+c[0]+"\" aria-pressed=\""+(c[0]===cat)+"\">"+esc(c[1])+"</button>";
+  }).join("");
+}
+
+function renderList(){
+  var es=entries(cat).filter(function(e){return label(e[0]).toLowerCase().indexOf(q.toLowerCase())>-1}).sort(function(a,b){return b[1].t-a[1].t});
+  $("#list").innerHTML=es.length?es.map(function(e){
+    var top=e[1].p&&e[1].p[0];
+    var lead=top?"<div class=\"lead-cell\"><button type=\"button\" class=\"plink\" data-p=\""+esc(top[0])+"\">"+headHtml(top[0])+"<span>"+esc(top[0])+"</span></button><span class=\"lead-val\">("+esc(fmt(e[0],top[1],cat))+")</span></div>":"–";
+    return "<tr><td><button class=\"link\" type=\"button\" data-k=\""+esc(e[0])+"\">"+iconHtml(e[0],cat)+"<span>"+esc(label(e[0]))+"</span></button></td><td class=\"col-lead\">"+lead+"</td><td class=\"num\">"+esc(fmt(e[0],e[1].t,cat))+"</td></tr>";
+  }).join(""):"<tr><td colspan=\"3\" class=\"empty\">Nichts gefunden.</td></tr>";
+}
+
+function renderPodium(pList, k, c){
+  var pod=$("#podium");
+  if(!pList||!pList.length){pod.style.display="none";pod.innerHTML="";return}
+  pod.style.display="grid";
+  pod.innerHTML=[1,0,2].map(function(idx){
+    var it=pList[idx], r=idx+1;
+    if(!it) return "<div class=\"pod-slot pod-"+r+"\"></div>";
+    return "<div class=\"pod-slot pod-"+r+"\"><button type=\"button\" class=\"pod-player\" data-p=\""+esc(it[0])+"\">"+headHtml(it[0])+"<span class=\"pod-name\">"+esc(it[0])+"</span></button><span class=\"pod-val\">"+esc(fmt(k,it[1],c))+"</span><div class=\"pod-bar\">"+r+".</div></div>";
+  }).join("");
+}
+
+function renderDlg(){
+  if(!open)return;
+  var e=((data.c||{})[open.c]||{})[open.k];if(!e)return;
+  $("#dt").innerHTML=iconHtml(open.k,open.c)+"<span>"+esc(label(open.k))+"</span>";
+  $("#ds").textContent="Gesamt "+fmt(open.k,e.t,open.c)+" • "+e.p.length+" Spieler";
+  renderPodium(e.p, open.k, open.c);
+  $("#db").innerHTML=e.p.map(function(p,i){
+    var s=e.t?(p[1]/e.t*100):0;
+    return "<tr><td>"+(i+1)+".</td><td><button type=\"button\" class=\"plink\" data-p=\""+esc(p[0])+"\">"+headHtml(p[0])+"<span>"+esc(p[0])+"</span></button></td><td class=\"num\">"+esc(fmt(open.k,p[1],open.c))+"</td><td class=\"num\">"+nf(s,1)+" %<span class=\"share\"><i style=\"width:"+s+"%\"></i></span></td></tr>";
+  }).join("");
+}
+
+function getPlayerStats(pName, cKey){
+  var o=(data.c||{})[cKey]||{}, res=[];
+  Object.keys(o).filter(function(k){return !/time_since_/.test(k)}).forEach(function(k){
+    var pl=(o[k]||{}).p||[];
+    for(var i=0;i<pl.length;i++){
+      if(pl[i][0]===pName){ res.push({k:k,c:cKey,val:pl[i][1],rank:i+1,tot:pl.length}); break; }
+    }
+  });
+  return res;
+}
+
+function renderPlayerDlg(){
+  if(!openPlayer)return;
+  var av=CATS.filter(function(c){return getPlayerStats(openPlayer,c[0]).length>0});
+  if(av.length&&!av.some(function(c){return c[0]===pcat})) pcat=av[0][0];
+  $("#pdt").innerHTML=headHtml(openPlayer)+"<span>"+esc(openPlayer)+"</span>";
+  var totE=0, top1=0;
+  CATS.forEach(function(c){ getPlayerStats(openPlayer,c[0]).forEach(function(s){ totE++; if(s.rank===1) top1++; }); });
+  $("#pds").textContent=totE+" Statistiken erfasst • "+top1+"× Platz 1";
+  $("#ptabs").innerHTML=av.map(function(c){return "<button type=\"button\" data-pc=\""+c[0]+"\" aria-pressed=\""+(c[0]===pcat)+"\">"+esc(c[1])+"</button>"}).join("");
+  var list=getPlayerStats(openPlayer,pcat).filter(function(s){return label(s.k).toLowerCase().indexOf(pq.toLowerCase())>-1}).sort(function(a,b){return a.rank!==b.rank?a.rank-b.rank:b.val-a.val});
+  $("#pdb").innerHTML=list.length?list.map(function(s){
+    var rc=s.rank<=3?" rank-"+s.rank:"";
+    return "<tr><td><button type=\"button\" class=\"link\" data-k=\""+esc(s.k)+"\" data-c=\""+esc(s.c)+"\">"+iconHtml(s.k,s.c)+"<span>"+esc(label(s.k))+"</span></button></td><td class=\"num\">"+esc(fmt(s.k,s.val,s.c))+"</td><td class=\"num\"><span class=\"rank-badge"+rc+"\">#"+s.rank+"</span></td></tr>";
+  }).join(""):"<tr><td colspan=\"3\" class=\"empty\">Keine Einträge.</td></tr>";
+}
+
+function openPlayerModal(name){
+  openPlayer=name; pq=""; $("#pq").value="";
+  if($("#dlg").open) $("#dlg").close();
+  renderPlayerDlg();
+  if(!$("#pdlg").open) $("#pdlg").showModal();
+}
+
+function render(){
+  try {
+    if(!(data.c||{})[cat]) cat=Object.keys(data.c||{})[0]||"custom";
+    renderTot(); renderPlayersBar(); renderTabs(); renderList(); renderDlg(); renderPlayerDlg();
+    $("#upd").textContent=(demo?"Demo-Daten, ":"")+"Stand "+new Date(data.updated||Date.now()).toLocaleString("de",{dateStyle:"short",timeStyle:"short"});
+  } catch(err) {
+    console.error(err);
+  }
+}
+
+function load(){
+  if(!DATA_URL)return;
+  fetch(DATA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    return r.json();
+  }).then(function(d){
+    if(d && d.c){ data=d; demo=false; render(); }
+  }).catch(function(e){ console.warn("Konnte stats.json nicht laden:", e); });
+}
+
+$("#tabs").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;cat=b.dataset.c;renderTabs();renderList()});
+$("#list").addEventListener("click",function(ev){
+  var p=ev.target.closest("[data-p]"); if(p){openPlayerModal(p.dataset.p);return}
+  var b=ev.target.closest("button[data-k]"); if(!b)return;
+  open={c:cat,k:b.dataset.k}; renderDlg(); $("#dlg").showModal();
+});
+$("#pbar").addEventListener("click",function(ev){var b=ev.target.closest("[data-p]");if(b)openPlayerModal(b.dataset.p)});
+$("#dlg").addEventListener("click",function(ev){
+  var p=ev.target.closest("[data-p]"); if(p){openPlayerModal(p.dataset.p);return}
+  if(ev.target===this){this.close();open=null}
+});
+$("#ptabs").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;pcat=b.dataset.pc;renderPlayerDlg()});
+$("#pdb").addEventListener("click",function(ev){
+  var b=ev.target.closest("button[data-k]"); if(!b)return;
+  $("#pdlg").close(); open={c:b.dataset.c||pcat,k:b.dataset.k}; renderDlg(); $("#dlg").showModal();
+});
+$("#q").addEventListener("input",function(){q=this.value;renderList()});
+$("#pq").addEventListener("input",function(){pq=this.value;renderPlayerDlg()});
+$("#x").addEventListener("click",function(){$("#dlg").close();open=null});
+$("#px").addEventListener("click",function(){$("#pdlg").close();openPlayer=null});
+$("#pdlg").addEventListener("click",function(ev){if(ev.target===this){this.close();openPlayer=null}});
+render(); load(); setInterval(load,60000);
+</script>
+</body>
+</html>
