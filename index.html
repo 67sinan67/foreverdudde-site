@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forever Dudde</title>
+<style>
+:root{--bg:#fff;--text:#1a1a1a;--muted:#666;--line:#ddd;--soft:#f5f5f5;--accent:#1f5fbf;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16181c;--text:#e6e6e6;--muted:#9a9a9a;--line:#2e3238;--soft:#1e2126;--accent:#7aa7f0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#16181c;--text:#e6e6e6;--muted:#9a9a9a;--line:#2e3238;--soft:#1e2126;--accent:#7aa7f0;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 56px}
+header{display:flex;gap:16px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line)}
+header a{text-decoration:none}
+header a[aria-current]{font-weight:600;color:var(--text)}
+h1{font-size:1.5rem;font-weight:600;margin:24px 0 4px}
+.muted{color:var(--muted);font-size:.9rem}
+.addr{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}
+code{font-family:ui-monospace,Consolas,monospace;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:6px 10px}
+button{font:inherit;cursor:pointer;color:var(--text);background:none;border:1px solid var(--line);border-radius:4px;padding:6px 12px}
+ul{margin:8px 0;padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="index.html" aria-current="page">Forever Dudde</a><a href="stats.html">Statistiken</a></header>
+  <h1>Forever Dudde</h1>
+  <p class="muted">Privater Minecraft-Server für Freunde, Java Edition 26.2.</p>
+  <div class="addr"><code id="addr">mc.foreverdudde.de</code><button id="copy" type="button">Kopieren</button></div>
+  <ul>
+    <li>Für den Beitritt brauchst du einen Platz auf der Whitelist.</li>
+    <li>Adresse im Multiplayer-Menü eintragen, der Port ist der Standard.</li>
+    <li><a href="stats.html">Statistiken</a> aller Spieler ansehen.</li>
+  </ul>
+</div>
+<script>
+document.getElementById("copy").addEventListener("click",function(){
+  var b=this,t=document.getElementById("addr").textContent,done=function(){b.textContent="Kopiert";setTimeout(function(){b.textContent="Kopieren"},1500)};
+  try{navigator.clipboard.writeText(t).then(done,done)}catch(e){done()}
+});
+</script>
+</body>
+</html>
