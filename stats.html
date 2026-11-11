@@ -5,43 +5,427 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Statistiken – Forever Dudde</title>
 <style>
-:root{--bg:#fff;--text:#1a1a1a;--muted:#666;--line:#ddd;--soft:#f5f5f5;--accent:#1f5fbf;
-  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16181c;--text:#e6e6e6;--muted:#9a9a9a;--line:#2e3238;--soft:#1e2126;--accent:#7aa7f0;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#16181c;--text:#e6e6e6;--muted:#9a9a9a;--line:#2e3238;--soft:#1e2126;--accent:#7aa7f0;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.wrap{max-width:760px;margin:0 auto;padding:0 20px 56px}
-header{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line)}
-header nav a{margin-right:16px;text-decoration:none}
-header nav a[aria-current]{font-weight:600;color:var(--text)}
-.muted{color:var(--muted);font-size:.9rem}
-h1{font-size:1.5rem;font-weight:600;margin:24px 0 4px}
-dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px 20px;margin:20px 0 24px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-dt{color:var(--muted);font-size:.85rem}
-dd{margin:0;font-size:1.25rem;font-variant-numeric:tabular-nums}
-.tabs{display:flex;flex-wrap:wrap;gap:4px 18px;border-bottom:1px solid var(--line);margin-bottom:14px}
-.tabs button{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:inherit;padding:6px 0;cursor:pointer}
-.tabs button[aria-pressed="true"]{color:var(--text);border-color:var(--accent)}
-#q{width:100%;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:8px 10px;margin-bottom:10px}
-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-th{text-align:left;font-weight:600;font-size:.85rem;color:var(--muted);padding:6px 8px;border-bottom:1px solid var(--line)}
-td{padding:7px 8px;border-bottom:1px solid var(--line)}
-.num{text-align:right}
-th.num{text-align:right}
-.link{background:none;border:0;padding:0;font:inherit;color:var(--accent);cursor:pointer;text-align:left}
-.link:hover{text-decoration:underline}
-.empty{color:var(--muted);padding:16px 0}
-dialog{width:min(520px,calc(100% - 32px));max-height:85vh;overflow:auto;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:18px}
-dialog::backdrop{background:rgba(0,0,0,.45)}
-.dh{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
-.dh h2{font-size:1.1rem;font-weight:600;margin:0}
-.dh button{background:none;border:1px solid var(--line);border-radius:4px;color:inherit;font:inherit;padding:3px 10px;cursor:pointer}
-.share{display:inline-block;width:70px;height:6px;background:var(--soft);vertical-align:middle;margin-left:8px}
-.share i{display:block;height:100%;background:var(--accent)}
+:root {
+  --bg: #f8f9fb;
+  --surface: #ffffff;
+  --text: #16191f;
+  --muted: #646b78;
+  --line: #e4e7ec;
+  --soft: #f1f3f7;
+  --accent: #1f5fbf;
+  --accent-soft: #eef4ff;
+  --gold: #d97706;
+  --gold-bg: #fef3c7;
+  --silver: #4b5563;
+  --silver-bg: #e5e7eb;
+  --bronze: #b45309;
+  --bronze-bg: #ffedd5;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: light;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 28px 64px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+header nav {
+  display: flex;
+  gap: 24px;
+}
+header nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+header nav a:hover { color: var(--text); }
+header nav a[aria-current] {
+  font-weight: 600;
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+.muted { color: var(--muted); font-size: .9rem; }
+h1 { font-size: 1.6rem; font-weight: 600; margin: 26px 0 4px; }
+
+/* Übersichtskarten oben */
+dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+dl > div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .02);
+}
+dt { color: var(--muted); font-size: .82rem; font-weight: 500; }
+dd { margin: 4px 0 0; font-size: 1.35rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Klickbare Spieler-Leiste */
+.players-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 22px;
+}
+.players-bar .lbl {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-right: 4px;
+}
+.p-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 5px 12px 5px 7px;
+  font: inherit;
+  font-size: .9rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .12s ease;
+}
+.p-chip:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.p-chip:active { transform: scale(.97); }
+
+/* Hauptbereich (Kategorien, Suche & Tabelle) */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 22px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .02);
+}
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+.tabs button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 500;
+  padding: 8px 2px;
+  margin-bottom: -1px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .15s ease, border-color .15s ease;
+}
+.tabs button:hover { color: var(--text); }
+.tabs button[aria-pressed="true"] {
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+#q {
+  width: 260px;
+  max-width: 100%;
+  font: inherit;
+  font-size: .92rem;
+  color: inherit;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 12px;
+  margin-bottom: 8px;
+  transition: border-color .15s ease, background .15s ease;
+}
+#q:focus { background: var(--surface); border-color: var(--accent); outline: none; }
+
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th {
+  text-align: left;
+  font-weight: 600;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+td { padding: 9px 10px; border-bottom: 1px solid var(--line); }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr { transition: background .12s ease; }
+tbody tr:hover { background: var(--bg); }
+.num { text-align: right; white-space: nowrap; }
+th.num { text-align: right; }
+
+.link {
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.link:hover span { text-decoration: underline; }
+.plink {
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  font: inherit;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color .12s ease;
+}
+.plink:hover { color: var(--accent); }
+.plink:hover span { text-decoration: underline; }
+
+/* Icons & Spielerköpfe (Nearest-Neighbour) */
+.ico {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+.head {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  flex-shrink: 0;
+  background: var(--soft);
+}
+.empty { color: var(--muted); padding: 24px 10px; text-align: center; }
+
+/* Dezente Animationen für Tabellenwechsel & Fenster */
+@keyframes fadeInRows {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-list tr { animation: fadeInRows .16s ease-out both; }
+
+dialog {
+  width: min(680px, calc(100% - 28px));
+  max-height: 86vh;
+  overflow: auto;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 24px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, .14);
+}
+dialog[open] {
+  animation: dlgOpen .2s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+dialog::backdrop {
+  background: rgba(15, 23, 42, .35);
+  backdrop-filter: blur(2px);
+  animation: backdropFade .2s ease forwards;
+}
+@keyframes dlgOpen {
+  from { opacity: 0; transform: translateY(10px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes backdropFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dh {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  position: sticky;
+  top: -22px;
+  background: var(--surface);
+  padding: 4px 0 12px;
+  border-bottom: 1px solid var(--line);
+  z-index: 2;
+}
+.dh h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.dh h2 .ico { width: 22px; height: 22px; }
+.dh h2 .head { width: 24px; height: 24px; }
+.dh button {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: inherit;
+  font: inherit;
+  font-size: .9rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.dh button:hover { background: var(--soft); }
+
+/* Tribüne für Plätze 1-3 */
+.podium {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-items: end;
+  margin: 18px 0 20px;
+  padding: 16px 12px 0;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.pod-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.pod-player {
+  background: none;
+  border: 0;
+  padding: 4px;
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: transform .15s ease, color .15s ease;
+}
+.pod-player:hover { transform: translateY(-2px); color: var(--accent); }
+.pod-player .head { width: 36px; height: 36px; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+.pod-1 .pod-player .head { width: 44px; height: 44px; }
+.pod-name { font-weight: 600; font-size: .9rem; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pod-val { font-size: .8rem; color: var(--muted); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.pod-bar {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 1px solid transparent;
+  border-bottom: 0;
+}
+.pod-1 .pod-bar { height: 64px; background: var(--gold-bg); color: var(--gold); border-color: #fde68a; font-size: 1.15rem; }
+.pod-2 .pod-bar { height: 48px; background: var(--silver-bg); color: var(--silver); border-color: #d1d5db; }
+.pod-3 .pod-bar { height: 36px; background: var(--bronze-bg); color: var(--bronze); border-color: #fed7aa; }
+
+/* Rang-Badges hinter den Stats im Spielerfenster */
+.rank-badge {
+  display: inline-block;
+  min-width: 34px;
+  text-align: center;
+  font-size: .78rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 12px;
+  margin-left: 8px;
+  background: var(--soft);
+  color: var(--muted);
+}
+.rank-1 { background: var(--gold-bg); color: var(--gold); }
+.rank-2 { background: var(--silver-bg); color: var(--silver); }
+.rank-3 { background: var(--bronze-bg); color: var(--bronze); }
+
+.share {
+  display: inline-block;
+  width: 64px;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--soft);
+  vertical-align: middle;
+  margin-left: 8px;
+}
+.share i { display: block; height: 100%; background: var(--accent); }
+
+/* Mobile Optimierungen */
+@media (max-width: 720px) {
+  .wrap { padding: 0 14px 48px; }
+  h1 { font-size: 1.4rem; margin-top: 18px; }
+  dl { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .panel { padding: 14px; }
+  .toolbar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  #q { width: 100%; margin-bottom: 10px; }
+  .share { display: none; }
+  dialog {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    margin: auto 0 0 0;
+    border-radius: 14px 14px 0 0;
+    padding: 18px 16px 24px;
+  }
+  .podium { gap: 6px; padding: 12px 8px 0; }
+  .pod-name { max-width: 90px; font-size: .82rem; }
+}
 </style>
 </head>
 <body>
@@ -51,35 +435,355 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
     <span class="muted" id="upd"></span>
   </header>
   <h1>Server-Statistiken</h1>
-  <p class="muted">Summe aller Spieler. Einen Eintrag anklicken, um die Rangliste zu sehen.</p>
+  <p class="muted">Summe aller Spieler. Statistik oder Spieler anklicken, um Details und Platzierungen zu sehen.</p>
   <dl id="tot"></dl>
-  <nav class="tabs" id="tabs" aria-label="Kategorien"></nav>
-  <input id="q" type="search" placeholder="Suchen" aria-label="Statistik suchen">
-  <table><thead><tr><th>Statistik</th><th class="num">Gesamt</th></tr></thead><tbody id="list"></tbody></table>
+  <div class="players-bar" id="pbar" aria-label="Spieler auswählen"></div>
+
+  <div class="panel">
+    <div class="toolbar">
+      <nav class="tabs" id="tabs" aria-label="Kategorien"></nav>
+      <input id="q" type="search" placeholder="Statistik suchen …" aria-label="Statistik suchen">
+    </div>
+    <table>
+      <thead><tr><th>Statistik</th><th class="num">Gesamt</th></tr></thead>
+      <tbody id="list" class="anim-list"></tbody>
+    </table>
+  </div>
 </div>
+
+<!-- Dialog 1: Statistik-Rangliste mit Tribüne (Plätze 1-3) -->
 <dialog id="dlg">
   <div class="dh"><h2 id="dt"></h2><button id="x" type="button">Schließen</button></div>
-  <p class="muted" id="ds"></p>
-  <table><thead><tr><th>#</th><th>Spieler</th><th class="num">Wert</th><th class="num">Anteil</th></tr></thead><tbody id="db"></tbody></table>
+  <p class="muted" id="ds" style="margin:10px 0 12px"></p>
+  <div id="podium" class="podium"></div>
+  <table>
+    <thead><tr><th>#</th><th>Spieler</th><th class="num">Wert</th><th class="num">Anteil</th></tr></thead>
+    <tbody id="db"></tbody>
+  </table>
+</dialog>
+
+<!-- Dialog 2: Einzelspieler-Statistiken mit Rang-Anzeige -->
+<dialog id="pdlg">
+  <div class="dh"><h2 id="pdt"></h2><button id="px" type="button">Schließen</button></div>
+  <p class="muted" id="pds" style="margin:10px 0 12px"></p>
+  <div class="toolbar" style="margin-bottom:10px">
+    <nav class="tabs" id="ptabs" aria-label="Spieler-Kategorien"></nav>
+    <input id="pq" type="search" placeholder="Im Spielerprofil suchen …" aria-label="Spieler-Statistik suchen" style="width:220px;max-width:100%;font:inherit;font-size:.88rem;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);margin-bottom:6px">
+  </div>
+  <table>
+    <thead><tr><th>Statistik</th><th class="num">Wert</th><th class="num">Platzierung</th></tr></thead>
+    <tbody id="pdb" class="anim-list"></tbody>
+  </table>
 </dialog>
 
 <script>
 // Adresse der stats.json eintragen, z. B.
 // https://raw.githubusercontent.com/DEINUSER/foreverdudde-stats/main/stats.json
-var DATA_URL = "https://raw.githubusercontent.com/67sinan67/foreverdudde-stats/main/stats.json";
+var DATA_URL = "";
+
+var WIKI_FP = "https://minecraft.wiki/w/Special:FilePath/";
 
 var P=["Mika","Lena","Tom","Ayla","Dudenhofen"];
 function mk(v){var p=P.map(function(n,i){return [n,v[i]]}).filter(function(x){return x[1]}).sort(function(a,b){return b[1]-a[1]});return {t:p.reduce(function(a,x){return a+x[1]},0),p:p}}
 var DEMO={updated:new Date().toISOString(),players:5,c:{
-  custom:{"minecraft:walk_one_cm":mk([9800000,6400000,3100000,2200000,12500000]),"minecraft:sprint_one_cm":mk([4100000,2900000,800000,1500000,6000000]),"minecraft:aviate_one_cm":mk([21000000,0,5000000,0,33000000]),"minecraft:play_time":mk([5400000,3800000,2100000,1700000,8900000]),"minecraft:deaths":mk([41,12,7,19,63]),"minecraft:mob_kills":mk([2300,1100,420,900,3900]),"minecraft:jump":mk([8200,5100,2300,3000,14000])},
+  custom:{
+    "minecraft:walk_one_cm":mk([9800000,6400000,3100000,2200000,12500000]),
+    "minecraft:sprint_one_cm":mk([4100000,2900000,800000,1500000,6000000]),
+    "minecraft:crouch_one_cm":mk([450000,320000,120000,190000,610000]),
+    "minecraft:swim_one_cm":mk([820000,540000,210000,390000,950000]),
+    "minecraft:fly_one_cm":mk([120000,80000,40000,60000,210000]),
+    "minecraft:aviate_one_cm":mk([21000000,0,5000000,0,33000000]),
+    "minecraft:horse_one_cm":mk([1500000,2300000,400000,800000,1900000]),
+    "minecraft:play_time":mk([5400000,3800000,2100000,1700000,8900000]),
+    "minecraft:deaths":mk([41,12,7,19,63]),
+    "minecraft:mob_kills":mk([2300,1100,420,900,3900]),
+    "minecraft:player_kills":mk([14,8,3,5,21]),
+    "minecraft:jump":mk([8200,5100,2300,3000,14000]),
+    "minecraft:damage_dealt":mk([45000,28000,12000,19000,68000]),
+    "minecraft:damage_taken":mk([18000,9500,4200,7100,24000])
+  },
   mined:{"minecraft:stone":mk([21000,9000,15000,3000,40000]),"minecraft:diamond_ore":mk([140,60,0,22,310]),"minecraft:oak_log":mk([900,2200,400,1500,1300])},
   crafted:{"minecraft:torch":mk([900,300,1200,200,2400]),"minecraft:bread":mk([0,320,0,140,60])},
-  killed:{"minecraft:zombie":mk([800,300,100,200,1500]),"minecraft:creeper":mk([140,90,60,110,400])},
-  killed_by:{"minecraft:creeper":mk([20,4,3,9,31])}
+  used:{"minecraft:diamond_pickaxe":mk([18500,7200,12400,2800,34100]),"minecraft:firework_rocket":mk([1200,0,350,0,2100])},
+  broken:{"minecraft:iron_pickaxe":mk([12,8,15,4,9])},
+  picked_up:{"minecraft:cobblestone":mk([25000,11000,16000,4500,42000]),"minecraft:diamond":mk([310,140,45,60,680])},
+  dropped:{"minecraft:rotten_flesh":mk([420,180,90,130,610])},
+  killed:{"minecraft:zombie":mk([800,300,100,200,1500]),"minecraft:creeper":mk([140,90,60,110,400]),"minecraft:skeleton":mk([520,210,80,150,890])},
+  killed_by:{"minecraft:creeper":mk([20,4,3,9,31]),"minecraft:player":mk([5,3,6,2,8])}
 }};
-var CATS=[["custom","Allgemein"],["mined","Abgebaut"],["crafted","Hergestellt"],["used","Benutzt"],["broken","Kaputtgegangen"],["picked_up","Aufgehoben"],["dropped","Fallen gelassen"],["killed","Getötet"],["killed_by","Gestorben durch"]];
-var L={"minecraft:walk_one_cm":"Zu Fuß gegangen","minecraft:sprint_one_cm":"Gesprintet","minecraft:crouch_one_cm":"Geschlichen","minecraft:swim_one_cm":"Geschwommen","minecraft:fly_one_cm":"Geflogen","minecraft:aviate_one_cm":"Mit Elytra geflogen","minecraft:boat_one_cm":"Mit Boot gefahren","minecraft:horse_one_cm":"Auf Pferd geritten","minecraft:minecart_one_cm":"Mit Lore gefahren","minecraft:climb_one_cm":"Geklettert","minecraft:fall_one_cm":"Gefallen","minecraft:play_time":"Spielzeit","minecraft:deaths":"Tode","minecraft:mob_kills":"Mobs getötet","minecraft:player_kills":"Spieler getötet","minecraft:jump":"Sprünge","minecraft:damage_dealt":"Schaden verursacht","minecraft:damage_taken":"Schaden erlitten"};
-var data=DEMO,demo=true,cat="custom",q="",open=null;
+
+var CATS=[
+  ["custom","Allgemein"],
+  ["mined","Abgebaut"],
+  ["crafted","Hergestellt"],
+  ["used","Benutzt"],
+  ["broken","Kaputtgegangen"],
+  ["picked_up","Aufgehoben"],
+  ["dropped","Fallen gelassen"],
+  ["killed","Getötet"],
+  ["killed_by","Gestorben durch"]
+];
+
+var L={
+  "minecraft:walk_one_cm":"Zu Fuß gegangen",
+  "minecraft:sprint_one_cm":"Gesprintet",
+  "minecraft:crouch_one_cm":"Geschlichen",
+  "minecraft:walk_on_water_one_cm":"Auf Wasser gelaufen",
+  "minecraft:walk_under_water_one_cm":"Unter Wasser gelaufen",
+  "minecraft:swim_one_cm":"Geschwommen",
+  "minecraft:fly_one_cm":"Geflogen",
+  "minecraft:aviate_one_cm":"Mit Elytra geflogen",
+  "minecraft:boat_one_cm":"Mit Boot gefahren",
+  "minecraft:horse_one_cm":"Auf Pferd geritten",
+  "minecraft:pig_one_cm":"Auf Schwein geritten",
+  "minecraft:strider_one_cm":"Auf Schreiter geritten",
+  "minecraft:camel_one_cm":"Auf Kamel geritten",
+  "minecraft:happy_ghast_one_cm":"Auf fröhlichem Ghast geflogen",
+  "minecraft:nautilus_one_cm":"Auf Nautilus geritten",
+  "minecraft:minecart_one_cm":"Mit Lore gefahren",
+  "minecraft:climb_one_cm":"Geklettert",
+  "minecraft:fall_one_cm":"Gefallen",
+  "minecraft:play_time":"Spielzeit",
+  "minecraft:play_one_minute":"Spielzeit",
+  "minecraft:total_world_time":"Zeit in der Welt",
+  "minecraft:sneak_time":"Schleichzeit",
+  "minecraft:time_since_death":"Zeit seit letztem Tod",
+  "minecraft:time_since_rest":"Zeit seit letztem Schlaf",
+  "minecraft:leave_game":"Spiele verlassen",
+  "minecraft:deaths":"Tode",
+  "minecraft:mob_kills":"Mobs getötet",
+  "minecraft:player_kills":"Spieler getötet",
+  "minecraft:jump":"Sprünge",
+  "minecraft:drop":"Gegenstände fallen gelassen",
+  "minecraft:damage_dealt":"Schaden verursacht",
+  "minecraft:damage_dealt_absorbed":"Verursachter Schaden (absorbiert)",
+  "minecraft:damage_dealt_resisted":"Verursachter Schaden (widerstanden)",
+  "minecraft:damage_taken":"Schaden erlitten",
+  "minecraft:damage_absorbed":"Schaden absorbiert",
+  "minecraft:damage_resisted":"Schaden widerstanden",
+  "minecraft:damage_blocked_by_shield":"Schaden mit Schild abgewehrt",
+  "minecraft:target_hit":"Zielblock getroffen",
+  "minecraft:animals_bred":"Tiere gezüchtet",
+  "minecraft:fish_caught":"Fische gefangen",
+  "minecraft:talked_to_villager":"Mit Dorfbewohnern gesprochen",
+  "minecraft:traded_with_villager":"Mit Dorfbewohnern gehandelt",
+  "minecraft:raid_trigger":"Überfälle ausgelöst",
+  "minecraft:raid_win":"Überfälle gewonnen",
+  "minecraft:sleep_in_bed":"Im Bett geschlafen",
+  "minecraft:eat_cake_slice":"Kuchenstücke gegessen",
+  "minecraft:pot_flower":"Blumen eingetopft",
+  "minecraft:bell_ring":"Glocken geläutet",
+  "minecraft:open_chest":"Truhen geöffnet",
+  "minecraft:trigger_trapped_chest":"Redstone-Truhen ausgelöst",
+  "minecraft:open_enderchest":"Endertruhen geöffnet",
+  "minecraft:open_shulker_box":"Shulkerkisten geöffnet",
+  "minecraft:open_barrel":"Fässer geöffnet",
+  "minecraft:inspect_hopper":"Trichter durchsucht",
+  "minecraft:inspect_dropper":"Spender durchsucht",
+  "minecraft:inspect_dispenser":"Werfer durchsucht",
+  "minecraft:interact_with_crafting_table":"Werkbänke benutzt",
+  "minecraft:interact_with_furnace":"Öfen benutzt",
+  "minecraft:interact_with_blast_furnace":"Schmelzöfen benutzt",
+  "minecraft:interact_with_smoker":"Räucheröfen benutzt",
+  "minecraft:interact_with_campfire":"Lagerfeuer benutzt",
+  "minecraft:interact_with_anvil":"Ambosse benutzt",
+  "minecraft:interact_with_grindstone":"Schleifsteine benutzt",
+  "minecraft:interact_with_smithing_table":"Schmiedetische benutzt",
+  "minecraft:interact_with_stonecutter":"Steinsägen benutzt",
+  "minecraft:interact_with_cartography_table":"Kartentische benutzt",
+  "minecraft:interact_with_loom":"Webstühle benutzt",
+  "minecraft:interact_with_brewingstand":"Braustände benutzt",
+  "minecraft:interact_with_beacon":"Leuchtfeuer benutzt",
+  "minecraft:interact_with_lectern":"Lesepulte benutzt",
+  "minecraft:enchant_item":"Gegenstände verzaubert",
+  "minecraft:play_record":"Schallplatten abgespielt",
+  "minecraft:play_noteblock":"Notenblöcke gespielt",
+  "minecraft:tune_noteblock":"Notenblöcke gestimmt",
+  "minecraft:fill_cauldron":"Kessel gefüllt",
+  "minecraft:use_cauldron":"Wasser aus Kesseln entnommen",
+  "minecraft:clean_armor":"Rüstung gewaschen",
+  "minecraft:clean_banner":"Banner gewaschen",
+  "minecraft:clean_shulker_box":"Shulkerkisten entfärbt"
+};
+
+var CUSTOM_ICONS={
+  "minecraft:walk_one_cm":"Invicon_Diamond_Boots.png",
+  "minecraft:sprint_one_cm":"Speed.png",
+  "minecraft:crouch_one_cm":"Invicon_Leather_Boots.png",
+  "minecraft:walk_on_water_one_cm":"Invicon_Lily_Pad.png",
+  "minecraft:walk_under_water_one_cm":"Invicon_Turtle_Shell.png",
+  "minecraft:swim_one_cm":"Invicon_Water_Bucket.png",
+  "minecraft:fly_one_cm":"Levitation.png",
+  "minecraft:aviate_one_cm":"Invicon_Elytra.png",
+  "minecraft:boat_one_cm":"Invicon_Oak_Boat.png",
+  "minecraft:horse_one_cm":"HorseFace.png",
+  "minecraft:pig_one_cm":"PigFace.png",
+  "minecraft:strider_one_cm":"StriderFace.png",
+  "minecraft:camel_one_cm":"CamelFace.png",
+  "minecraft:happy_ghast_one_cm":"HappyGhastFace.png",
+  "minecraft:nautilus_one_cm":"Invicon_Nautilus_Shell.png",
+  "minecraft:minecart_one_cm":"Invicon_Minecart.png",
+  "minecraft:climb_one_cm":"Invicon_Ladder.png",
+  "minecraft:fall_one_cm":"Slow_Falling.png",
+  "minecraft:play_time":"Invicon_Clock.png",
+  "minecraft:play_one_minute":"Invicon_Clock.png",
+  "minecraft:total_world_time":"Invicon_Clock.png",
+  "minecraft:sneak_time":"Slowness.png",
+  "minecraft:time_since_death":"Invicon_Recovery_Compass.png",
+  "minecraft:time_since_rest":"PhantomFace.png",
+  "minecraft:leave_game":"Invicon_Oak_Door.png",
+  "minecraft:deaths":"Invicon_Skeleton_Skull.png",
+  "minecraft:mob_kills":"Invicon_Diamond_Sword.png",
+  "minecraft:player_kills":"Invicon_Netherite_Sword.png",
+  "minecraft:jump":"Jump_Boost.png",
+  "minecraft:drop":"Invicon_Dropper.png",
+  "minecraft:damage_dealt":"Strength.png",
+  "minecraft:damage_dealt_absorbed":"Absorption.png",
+  "minecraft:damage_dealt_resisted":"Resistance.png",
+  "minecraft:damage_taken":"Health_Boost.png",
+  "minecraft:damage_absorbed":"Invicon_Golden_Apple.png",
+  "minecraft:damage_resisted":"Resistance.png",
+  "minecraft:damage_blocked_by_shield":"Invicon_Shield.png",
+  "minecraft:target_hit":"Invicon_Target.png",
+  "minecraft:animals_bred":"Invicon_Wheat.png",
+  "minecraft:fish_caught":"Invicon_Fishing_Rod.png",
+  "minecraft:talked_to_villager":"VillagerFace.png",
+  "minecraft:traded_with_villager":"Invicon_Emerald.png",
+  "minecraft:raid_trigger":"Bad_Omen.png",
+  "minecraft:raid_win":"Hero_of_the_Village.png",
+  "minecraft:sleep_in_bed":"Invicon_Red_Bed.png",
+  "minecraft:eat_cake_slice":"Invicon_Cake.png",
+  "minecraft:pot_flower":"Invicon_Flower_Pot.png",
+  "minecraft:bell_ring":"Invicon_Bell.png",
+  "minecraft:open_chest":"Invicon_Chest.png",
+  "minecraft:trigger_trapped_chest":"Invicon_Trapped_Chest.png",
+  "minecraft:open_enderchest":"Invicon_Ender_Chest.png",
+  "minecraft:open_shulker_box":"Invicon_Shulker_Box.png",
+  "minecraft:open_barrel":"Invicon_Barrel.png",
+  "minecraft:inspect_hopper":"Invicon_Hopper.png",
+  "minecraft:inspect_dropper":"Invicon_Dropper.png",
+  "minecraft:inspect_dispenser":"Invicon_Dispenser.png",
+  "minecraft:interact_with_crafting_table":"Invicon_Crafting_Table.png",
+  "minecraft:interact_with_furnace":"Invicon_Furnace.png",
+  "minecraft:interact_with_blast_furnace":"Invicon_Blast_Furnace.png",
+  "minecraft:interact_with_smoker":"Invicon_Smoker.png",
+  "minecraft:interact_with_campfire":"Invicon_Campfire.png",
+  "minecraft:interact_with_anvil":"Invicon_Anvil.png",
+  "minecraft:interact_with_grindstone":"Invicon_Grindstone.png",
+  "minecraft:interact_with_smithing_table":"Invicon_Smithing_Table.png",
+  "minecraft:interact_with_stonecutter":"Invicon_Stonecutter.png",
+  "minecraft:interact_with_cartography_table":"Invicon_Cartography_Table.png",
+  "minecraft:interact_with_loom":"Invicon_Loom.png",
+  "minecraft:interact_with_brewingstand":"Invicon_Brewing_Stand.png",
+  "minecraft:interact_with_beacon":"Invicon_Beacon.png",
+  "minecraft:interact_with_lectern":"Invicon_Lectern.png",
+  "minecraft:enchant_item":"Invicon_Enchanting_Table.png",
+  "minecraft:play_record":"Invicon_Jukebox.png",
+  "minecraft:play_noteblock":"Invicon_Note_Block.png",
+  "minecraft:tune_noteblock":"Invicon_Note_Block.png",
+  "minecraft:fill_cauldron":"Invicon_Cauldron.png",
+  "minecraft:use_cauldron":"Invicon_Cauldron.png",
+  "minecraft:clean_armor":"Invicon_Leather_Tunic.png",
+  "minecraft:clean_banner":"Invicon_White_Banner.png",
+  "minecraft:clean_shulker_box":"Invicon_Shulker_Box.png"
+};
+
+var ITEM_NAME_MAP={
+  "coal_block":"Block_of_Coal","iron_block":"Block_of_Iron","gold_block":"Block_of_Gold",
+  "diamond_block":"Block_of_Diamond","emerald_block":"Block_of_Emerald","lapis_block":"Block_of_Lapis_Lazuli",
+  "redstone_block":"Block_of_Redstone","quartz_block":"Block_of_Quartz","netherite_block":"Block_of_Netherite",
+  "copper_block":"Block_of_Copper","amethyst_block":"Block_of_Amethyst","raw_iron_block":"Block_of_Raw_Iron",
+  "raw_gold_block":"Block_of_Raw_Gold","raw_copper_block":"Block_of_Raw_Copper","bamboo_block":"Block_of_Bamboo",
+  "stripped_bamboo_block":"Block_of_Stripped_Bamboo","resin_block":"Block_of_Resin","hay_block":"Hay_Bale",
+  "smooth_quartz":"Smooth_Quartz_Block","beef":"Raw_Beef","cooked_beef":"Steak","porkchop":"Raw_Porkchop",
+  "chicken":"Raw_Chicken","mutton":"Raw_Mutton","rabbit":"Raw_Rabbit","cod":"Raw_Cod","salmon":"Raw_Salmon",
+  "chest_minecart":"Minecart_with_Chest","furnace_minecart":"Minecart_with_Furnace","tnt_minecart":"Minecart_with_TNT",
+  "hopper_minecart":"Minecart_with_Hopper","command_block_minecart":"Minecart_with_Command_Block",
+  "redstone":"Redstone_Dust","redstone_wire":"Redstone_Dust","quartz":"Nether_Quartz","slime_ball":"Slimeball",
+  "writable_book":"Book_and_Quill","ender_eye":"Eye_of_Ender","experience_bottle":"Bottle_o'_Enchanting",
+  "totem_of_undying":"Totem_of_Undying","heart_of_the_sea":"Heart_of_the_Sea","rabbit_foot":"Rabbit's_Foot",
+  "dragon_breath":"Dragon's_Breath","turtle_helmet":"Turtle_Shell","leather_helmet":"Leather_Cap",
+  "leather_chestplate":"Leather_Tunic","leather_leggings":"Leather_Pants","cod_bucket":"Bucket_of_Cod",
+  "salmon_bucket":"Bucket_of_Salmon","pufferfish_bucket":"Bucket_of_Pufferfish",
+  "tropical_fish_bucket":"Bucket_of_Tropical_Fish","axolotl_bucket":"Bucket_of_Axolotl",
+  "tadpole_bucket":"Bucket_of_Tadpole","map":"Empty_Map","filled_map":"Map","comparator":"Redstone_Comparator",
+  "repeater":"Redstone_Repeater","tnt":"TNT","jack_o_lantern":"Jack_o'Lantern",
+  "lily_of_the_valley":"Lily_of_the_Valley","carrot_on_a_stick":"Carrot_on_a_Stick",
+  "warped_fungus_on_a_stick":"Warped_Fungus_on_a_Stick","petrified_oak_slab":"Oak_Slab",
+  "netherite_upgrade_smithing_template":"Netherite_Upgrade","carrots":"Carrot","potatoes":"Potato",
+  "beetroots":"Beetroot","sweet_berry_bush":"Sweet_Berries","cave_vines":"Glow_Berries",
+  "cave_vines_plant":"Glow_Berries","twisting_vines_plant":"Twisting_Vines","weeping_vines_plant":"Weeping_Vines",
+  "kelp_plant":"Kelp","bamboo_sapling":"Bamboo","melon_stem":"Melon_Seeds","attached_melon_stem":"Melon_Seeds",
+  "pumpkin_stem":"Pumpkin_Seeds","attached_pumpkin_stem":"Pumpkin_Seeds","tall_seagrass":"Seagrass",
+  "piston_head":"Piston","moving_piston":"Piston","powder_snow_cauldron":"Cauldron",
+  "lava_cauldron":"Cauldron","water_cauldron":"Cauldron","candle_cake":"Cake"
+};
+
+function toTitleCase(id){return id.split("_").map(function(w){return w?w.charAt(0).toUpperCase()+w.slice(1):""}).join("_")}
+function toPascalCase(id){return id.split("_").map(function(w){return w?w.charAt(0).toUpperCase()+w.slice(1):""}).join("")}
+
+function getIconCandidates(k, c){
+  var id = k.replace(/^minecraft:/, "");
+  if(c === "custom"){
+    var customFile = CUSTOM_ICONS[k] || CUSTOM_ICONS["minecraft:" + id];
+    if(customFile){
+      var list = [WIKI_FP + customFile];
+      if(/Face\.png$/.test(customFile)) list.push(WIKI_FP + customFile.replace(/([a-z])([A-Z])/g, "$1_$2"));
+      return list;
+    }
+    return [WIKI_FP + "Invicon_" + toTitleCase(id) + ".png"];
+  }
+  if(c === "killed" || c === "killed_by"){
+    if(id === "player") return [WIKI_FP + "AlexFace.png", WIKI_FP + "Alex_Face.png"];
+    var pascal = toPascalCase(id), title = toTitleCase(id);
+    return [WIKI_FP + pascal + "Face.png", WIKI_FP + title + "_Face.png", WIKI_FP + "Invicon_" + title + "_Spawn_Egg.png", WIKI_FP + "Invicon_" + title + ".png"];
+  }
+  var norm = id.replace(/^waxed_/, "").replace(/_wall_hanging_sign$/, "_hanging_sign").replace(/_wall_sign$/, "_sign")
+               .replace(/_wall_banner$/, "_banner").replace(/_wall_head$/, "_head").replace(/_wall_skull$/, "_skull")
+               .replace(/_wall_torch$/, "_torch").replace(/_wall_fan$/, "_fan").replace(/^wall_torch$/, "torch")
+               .replace(/_candle_cake$/, "_candle").replace(/^potted_/, "");
+  var urls = [];
+  if(ITEM_NAME_MAP[norm]) urls.push(WIKI_FP + "Invicon_" + ITEM_NAME_MAP[norm] + ".png");
+  if(/_armor_trim_smithing_template$/.test(norm)) urls.push(WIKI_FP + "Invicon_" + toTitleCase(norm.replace(/_smithing_template$/, "")) + ".png");
+  if(/_banner_pattern$/.test(norm)) urls.push(WIKI_FP + "Invicon_Banner_Pattern.png");
+  var tc = toTitleCase(norm);
+  urls.push(WIKI_FP + "Invicon_" + tc + ".png");
+  var lowerPrep = tc.replace(/_Of_/g, "_of_").replace(/_The_/g, "_the_").replace(/_On_/g, "_on_").replace(/_A_/g, "_a_").replace(/_With_/g, "_with_");
+  if(lowerPrep !== tc) urls.push(WIKI_FP + "Invicon_" + lowerPrep + ".png");
+  if(/_block$/.test(norm)) urls.push(WIKI_FP + "Invicon_Block_of_" + toTitleCase(norm.replace(/_block$/, "")) + ".png");
+  urls.push(WIKI_FP + tc + ".png");
+  return urls;
+}
+
+window.icoErr = function(img){
+  var list = (img.getAttribute("data-fb") || "").split("|").filter(Boolean);
+  var idx = parseInt(img.getAttribute("data-idx") || "0", 10) + 1;
+  if(idx < list.length){
+    img.setAttribute("data-idx", String(idx));
+    img.src = list[idx];
+  } else {
+    img.style.display = "none";
+  }
+};
+
+function iconHtml(k, c){
+  var urls = getIconCandidates(k, c);
+  if(!urls.length) return "";
+  return "<img class=\"ico\" src=\"" + esc(urls[0]) + "\" data-fb=\"" + esc(urls.join("|")) + "\" data-idx=\"0\" alt=\"\" loading=\"lazy\" onerror=\"icoErr(this)\">";
+}
+
+// 2D-Spielerkopf neben Namen (mc-heads -> minotar -> AlexFace Fallback)
+function headHtml(name){
+  var u = encodeURIComponent(name);
+  var fb = [
+    "https://mc-heads.net/avatar/" + u + "/32",
+    "https://minotar.net/helm/" + u + "/32.png",
+    WIKI_FP + "AlexFace.png"
+  ];
+  return "<img class=\"head\" src=\"" + esc(fb[0]) + "\" data-fb=\"" + esc(fb.join("|")) + "\" data-idx=\"0\" alt=\"\" loading=\"lazy\" onerror=\"icoErr(this)\">";
+}
+
+var data=DEMO,demo=true,cat="custom",q="",open=null,openPlayer=null,pcat="custom",pq="";
 var $=function(s){return document.querySelector(s)};
 function esc(s){var d=document.createElement("div");d.textContent=String(s);return d.innerHTML}
 function nf(v,d){return v.toLocaleString("de",{maximumFractionDigits:d||0})}
@@ -94,6 +798,18 @@ function fmt(k,v,c){
 function sumC(c,f){var o=(data.c||{})[c]||{},s=0;Object.keys(o).forEach(function(k){if(!f||f(k))s+=o[k].t});return s}
 function entries(c){var o=(data.c||{})[c]||{};return Object.keys(o).filter(function(k){return !/time_since_/.test(k)}).map(function(k){return [k,o[k]]})}
 
+// Alle aktiven Spielernamen aus den Daten ermitteln
+function allPlayers(){
+  var map={};
+  Object.keys(data.c||{}).forEach(function(c){
+    var o=data.c[c]||{};
+    Object.keys(o).forEach(function(k){
+      ((o[k]||{}).p||[]).forEach(function(row){ map[row[0]]=true; });
+    });
+  });
+  return Object.keys(map).sort(function(a,b){return a.localeCompare(b,"de")});
+}
+
 function renderTot(){
   var t=[["Spielzeit",nf(sumC("custom",function(k){return /play_time|play_one_minute/.test(k)})/72000,1)+" h"],
     ["Strecke",nf(sumC("custom",function(k){return /_one_cm$/.test(k)})/100000,1)+" km"],
@@ -102,34 +818,150 @@ function renderTot(){
     ["Tode",nf(sumC("custom",function(k){return /:deaths$/.test(k)}))]];
   $("#tot").innerHTML=t.map(function(x){return "<div><dt>"+esc(x[0])+"</dt><dd>"+esc(x[1])+"</dd></div>"}).join("");
 }
+
+function renderPlayersBar(){
+  var ps=allPlayers();
+  if(!ps.length){$("#pbar").innerHTML="";return}
+  $("#pbar").innerHTML="<span class=\"lbl\">Spieler:</span>"+ps.map(function(n){
+    return "<button type=\"button\" class=\"p-chip\" data-p=\""+esc(n)+"\">"+headHtml(n)+"<span>"+esc(n)+"</span></button>";
+  }).join("");
+}
+
 function renderTabs(){
   $("#tabs").innerHTML=CATS.filter(function(c){return (data.c||{})[c[0]]}).map(function(c){return "<button type=\"button\" data-c=\""+c[0]+"\" aria-pressed=\""+(c[0]===cat)+"\">"+esc(c[1])+"</button>"}).join("");
 }
+
 function renderList(){
   var es=entries(cat).filter(function(e){return label(e[0]).toLowerCase().indexOf(q.toLowerCase())>-1}).sort(function(a,b){return b[1].t-a[1].t});
-  $("#list").innerHTML=es.length?es.map(function(e){return "<tr><td><button class=\"link\" type=\"button\" data-k=\""+esc(e[0])+"\">"+esc(label(e[0]))+"</button></td><td class=\"num\">"+esc(fmt(e[0],e[1].t,cat))+"</td></tr>"}).join(""):"<tr><td colspan=\"2\" class=\"empty\">Nichts gefunden.</td></tr>";
+  $("#list").innerHTML=es.length?es.map(function(e){return "<tr><td><button class=\"link\" type=\"button\" data-k=\""+esc(e[0])+"\">"+iconHtml(e[0],cat)+"<span>"+esc(label(e[0]))+"</span></button></td><td class=\"num\">"+esc(fmt(e[0],e[1].t,cat))+"</td></tr>"}).join(""):"<tr><td colspan=\"2\" class=\"empty\">Nichts gefunden.</td></tr>";
 }
+
+function renderPodium(pList, k, c){
+  var pod=$("#podium");
+  if(!pList || !pList.length){pod.style.display="none";pod.innerHTML="";return}
+  pod.style.display="grid";
+  // Klassische Tribünen-Reihenfolge: Platz 2 (links), Platz 1 (Mitte), Platz 3 (rechts)
+  var order = [1, 0, 2];
+  pod.innerHTML = order.map(function(idx){
+    var item = pList[idx];
+    var rank = idx + 1;
+    if(!item) return "<div class=\"pod-slot pod-"+rank+"\"></div>";
+    return "<div class=\"pod-slot pod-"+rank+"\">" +
+      "<button type=\"button\" class=\"pod-player\" data-p=\""+esc(item[0])+"\">" +
+        headHtml(item[0]) +
+        "<span class=\"pod-name\">"+esc(item[0])+"</span>" +
+      "</button>" +
+      "<span class=\"pod-val\">"+esc(fmt(k, item[1], c))+"</span>" +
+      "<div class=\"pod-bar\">"+rank+".</div>" +
+    "</div>";
+  }).join("");
+}
+
 function renderDlg(){
   if(!open)return;
   var e=((data.c||{})[open.c]||{})[open.k];if(!e)return;
-  $("#dt").textContent=label(open.k);
-  $("#ds").textContent="Gesamt "+fmt(open.k,e.t,open.c)+", "+e.p.length+" Spieler";
-  $("#db").innerHTML=e.p.map(function(p,i){var s=p[1]/e.t*100;return "<tr><td>"+(i+1)+"</td><td>"+esc(p[0])+"</td><td class=\"num\">"+esc(fmt(open.k,p[1],open.c))+"</td><td class=\"num\">"+nf(s,1)+" %<span class=\"share\"><i style=\"width:"+s+"%\"></i></span></td></tr>"}).join("");
+  $("#dt").innerHTML=iconHtml(open.k,open.c)+"<span>"+esc(label(open.k))+"</span>";
+  $("#ds").textContent="Gesamt "+fmt(open.k,e.t,open.c)+" • "+e.p.length+" Spieler";
+  renderPodium(e.p, open.k, open.c);
+  $("#db").innerHTML=e.p.map(function(p,i){
+    var s=p[1]/e.t*100;
+    return "<tr><td>"+(i+1)+".</td><td><button type=\"button\" class=\"plink\" data-p=\""+esc(p[0])+"\">"+headHtml(p[0])+"<span>"+esc(p[0])+"</span></button></td><td class=\"num\">"+esc(fmt(open.k,p[1],open.c))+"</td><td class=\"num\">"+nf(s,1)+" %<span class=\"share\"><i style=\"width:"+s+"%\"></i></span></td></tr>";
+  }).join("");
 }
+
+// Einzelspieler-Ansicht inkl. Platzierung hinter jedem Stat
+function getPlayerStats(pName, cKey){
+  var o=(data.c||{})[cKey]||{}, res=[];
+  Object.keys(o).filter(function(k){return !/time_since_/.test(k)}).forEach(function(k){
+    var plist=(o[k]||{}).p||[];
+    for(var i=0;i<plist.length;i++){
+      if(plist[i][0]===pName){
+        res.push({k:k, c:cKey, val:plist[i][1], rank:i+1, totalPlayers:plist.length});
+        break;
+      }
+    }
+  });
+  return res;
+}
+
+function renderPlayerDlg(){
+  if(!openPlayer)return;
+  var availCats = CATS.filter(function(c){return getPlayerStats(openPlayer, c[0]).length > 0});
+  if(availCats.length && !availCats.some(function(c){return c[0]===pcat})){
+    pcat = availCats[0][0];
+  }
+  $("#pdt").innerHTML = headHtml(openPlayer) + "<span>" + esc(openPlayer) + "</span>";
+
+  var totalEntries = 0, top1Count = 0;
+  CATS.forEach(function(c){
+    getPlayerStats(openPlayer, c[0]).forEach(function(st){
+      totalEntries++;
+      if(st.rank === 1) top1Count++;
+    });
+  });
+  $("#pds").textContent = totalEntries + " Statistiken erfasst • " + top1Count + "× Platz 1";
+
+  $("#ptabs").innerHTML = availCats.map(function(c){
+    return "<button type=\"button\" data-pc=\""+c[0]+"\" aria-pressed=\""+(c[0]===pcat)+"\">"+esc(c[1])+"</button>";
+  }).join("");
+
+  var list = getPlayerStats(openPlayer, pcat).filter(function(st){
+    return label(st.k).toLowerCase().indexOf(pq.toLowerCase()) > -1;
+  }).sort(function(a,b){
+    return a.rank !== b.rank ? a.rank - b.rank : b.val - a.val;
+  });
+
+  $("#pdb").innerHTML = list.length ? list.map(function(st){
+    var rCls = st.rank <= 3 ? " rank-" + st.rank : "";
+    return "<tr>" +
+      "<td><button type=\"button\" class=\"link\" data-k=\""+esc(st.k)+"\" data-c=\""+esc(st.c)+"\">"+iconHtml(st.k, st.c)+"<span>"+esc(label(st.k))+"</span></button></td>" +
+      "<td class=\"num\">"+esc(fmt(st.k, st.val, st.c))+"</td>" +
+      "<td class=\"num\"><span class=\"rank-badge"+rCls+"\" title=\"Platz "+st.rank+" von "+st.totalPlayers+"\">#"+st.rank+"</span></td>" +
+    "</tr>";
+  }).join("") : "<tr><td colspan=\"3\" class=\"empty\">Keine Einträge in dieser Kategorie.</td></tr>";
+}
+
+function openPlayerModal(name){
+  openPlayer = name;
+  pq = "";
+  $("#pq").value = "";
+  if($("#dlg").open) $("#dlg").close();
+  renderPlayerDlg();
+  if(!$("#pdlg").open) $("#pdlg").showModal();
+}
+
 function render(){
   if(!(data.c||{})[cat])cat=Object.keys(data.c||{})[0]||"custom";
-  renderTot();renderTabs();renderList();renderDlg();
+  renderTot();renderPlayersBar();renderTabs();renderList();renderDlg();renderPlayerDlg();
   $("#upd").textContent=(demo?"Demo-Daten, ":"")+"Stand "+new Date(data.updated).toLocaleString("de",{dateStyle:"short",timeStyle:"short"});
 }
 function load(){
   if(!DATA_URL)return;
   fetch(DATA_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){data=d;demo=false;render()}).catch(function(){});
 }
+
 $("#tabs").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;cat=b.dataset.c;renderTabs();renderList()});
 $("#list").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;open={c:cat,k:b.dataset.k};renderDlg();$("#dlg").showModal()});
+$("#pbar").addEventListener("click",function(ev){var b=ev.target.closest("[data-p]");if(!b)return;openPlayerModal(b.dataset.p)});
+$("#dlg").addEventListener("click",function(ev){
+  var pBtn=ev.target.closest("[data-p]");
+  if(pBtn){openPlayerModal(pBtn.dataset.p);return}
+  if(ev.target===this){this.close();open=null}
+});
+$("#ptabs").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;pcat=b.dataset.pc;renderPlayerDlg()});
+$("#pdb").addEventListener("click",function(ev){
+  var b=ev.target.closest("button[data-k]");
+  if(!b)return;
+  $("#pdlg").close();
+  open={c:b.dataset.c||pcat,k:b.dataset.k};
+  renderDlg();
+  $("#dlg").showModal();
+});
 $("#q").addEventListener("input",function(){q=this.value;renderList()});
+$("#pq").addEventListener("input",function(){pq=this.value;renderPlayerDlg()});
 $("#x").addEventListener("click",function(){$("#dlg").close();open=null});
-$("#dlg").addEventListener("click",function(ev){if(ev.target===this){this.close();open=null}});
+$("#px").addEventListener("click",function(){$("#pdlg").close();openPlayer=null});
+$("#pdlg").addEventListener("click",function(ev){if(ev.target===this){this.close();openPlayer=null}});
 render();load();setInterval(load,60000);
 </script>
 </body>
