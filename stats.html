@@ -66,7 +66,7 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
 <script>
 // Adresse der stats.json eintragen, z. B.
 // https://raw.githubusercontent.com/DEINUSER/foreverdudde-stats/main/stats.json
-var DATA_URL = "";
+var DATA_URL = "https://raw.githubusercontent.com/67sinan67/foreverdudde-stats/main/stats.json";
 
 var P=["Mika","Lena","Tom","Ayla","Dudenhofen"];
 function mk(v){var p=P.map(function(n,i){return [n,v[i]]}).filter(function(x){return x[1]}).sort(function(a,b){return b[1]-a[1]});return {t:p.reduce(function(a,x){return a+x[1]},0),p:p}}
