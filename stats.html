@@ -10,8 +10,27 @@
   --line: #e2e6ee; --soft: #eef1f6; --accent: #1d5bbf; --accent-soft: #eaf2ff;
   --gold: #c97306; --gold-bg: #fef3c7; --silver: #4b5563; --silver-bg: #e5e7eb;
   --bronze: #a84b08; --bronze-bg: #ffedd5;
+  --gold-bd: #fde68a; --silver-bd: #d1d5db; --bronze-bd: #fed7aa;
   box-sizing: border-box; color-scheme: light;
   padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16181c; --surface: #1e2126; --text: #e6e6e6; --muted: #9a9a9a;
+    --line: #2e3238; --soft: #2a2f37; --accent: #7aa7f0; --accent-soft: #1f2d44;
+    --gold: #f0b04a; --gold-bg: #3a2d12; --gold-bd: #5c4518;
+    --silver: #c3c9d3; --silver-bg: #2f343c; --silver-bd: #454c57;
+    --bronze: #e0955a; --bronze-bg: #3b2616; --bronze-bd: #5e3d22;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16181c; --surface: #1e2126; --text: #e6e6e6; --muted: #9a9a9a;
+  --line: #2e3238; --soft: #2a2f37; --accent: #7aa7f0; --accent-soft: #1f2d44;
+  --gold: #f0b04a; --gold-bg: #3a2d12; --gold-bd: #5c4518;
+  --silver: #c3c9d3; --silver-bg: #2f343c; --silver-bd: #454c57;
+  --bronze: #e0955a; --bronze-bg: #3b2616; --bronze-bd: #5e3d22;
+  color-scheme: dark;
 }
 html { font-size: clamp(16px, 0.55vw + 9px, 24px); scroll-padding-top: env(safe-area-inset-top, 0px); }
 *, *::before, *::after { box-sizing: inherit; }
@@ -95,9 +114,9 @@ dialog::backdrop { background: rgba(15,23,42,.4); backdrop-filter: blur(3px); }
 .pod-name { font-weight: 600; font-size: 1rem; max-width: 10rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pod-val { font-size: .88rem; font-weight: 500; color: var(--muted); margin-bottom: 0.55rem; }
 .pod-bar { width: 100%; border-radius: 0.5rem 0.5rem 0 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; border: 1px solid transparent; border-bottom: 0; }
-.pod-1 .pod-bar { height: 4.6rem; background: var(--gold-bg); color: var(--gold); border-color: #fde68a; font-size: 1.3rem; }
-.pod-2 .pod-bar { height: 3.4rem; background: var(--silver-bg); color: var(--silver); border-color: #d1d5db; }
-.pod-3 .pod-bar { height: 2.5rem; background: var(--bronze-bg); color: var(--bronze); border-color: #fed7aa; }
+.pod-1 .pod-bar { height: 4.6rem; background: var(--gold-bg); color: var(--gold); border-color: var(--gold-bd); font-size: 1.3rem; }
+.pod-2 .pod-bar { height: 3.4rem; background: var(--silver-bg); color: var(--silver); border-color: var(--silver-bd); }
+.pod-3 .pod-bar { height: 2.5rem; background: var(--bronze-bg); color: var(--bronze); border-color: var(--bronze-bd); }
 
 .rank-badge { display: inline-block; min-width: 2.4rem; text-align: center; font-size: .85rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 1rem; background: var(--soft); color: var(--muted); }
 .rank-1 { background: var(--gold-bg); color: var(--gold); }
