@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tegg - Forever Dudde</title>
+<style>
+:root{--bg:#fff;--text:#1a1a1a;--muted:#666;--line:#ddd;--soft:#f5f5f5;--accent:#1f5fbf;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16181c;--text:#e6e6e6;--muted:#9a9a9a;--line:#2e3238;--soft:#1e2126;--accent:#7aa7f0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#16181c;--text:#e6e6e6;--muted:#9a9a9a;--line:#2e3238;--soft:#1e2126;--accent:#7aa7f0;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 56px}
+header{display:flex;gap:16px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line)}
+header a{text-decoration:none}
+header a[aria-current]{font-weight:600;color:var(--text)}
+h1{font-size:1.5rem;font-weight:600;margin:24px 0 4px}
+.muted{color:var(--muted);font-size:.9rem}
+.addr{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}
+code{font-family:ui-monospace,Consolas,monospace;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:6px 10px}
+button{font:inherit;cursor:pointer;color:var(--text);background:none;border:1px solid var(--line);border-radius:4px;padding:6px 12px}
+ul{margin:8px 0;padding-left:20px}
+</style>
+</head>
+<body>
+    <div class="wrap">
+        <header><a href="index.html">Forever Dudde</a><a href="stats.html">Statistiken</a><a href="tegg.html" aria-current="page">Tegg</a></header>
+        <h1>Tegg</h1>
+        <p class="muted">Tag aka Hide and Seek aber mit dem Dragon Egg -> Tegg</p>
+        <p>Hi, willkommen bei Tegg, das Spiel bei dem es darum geht das Dragon Egg bei andern Spielern zu finden und dann bei sich selber zu verstecken. Das ist nicht das erste Mal das wir das machen aber hat sich trotzdem einiges verändert und manche haben auch noch nie mitgemacht deswegen hier genau wies funktioniert:</p>
+        <p>Ein Spieler startet mit dem Egg und versteckt das irgenwo bei sich in der Base. Danach geht er zum Spawn und schreibt seinen Namen und die groben Coords seiner Base in das Buch auf dem rechten Lectern. Und als Letztes muss er im linken Buch auf der letzten Seite noch auf "Stimmt[x]" clicken.</p>
+        <p>Aber jetzt sammelt er Punkte. Diese werden auch weiter gezählt, wenn der Spieler offline geht. Dabei entspricht das Egg ein ganzen Tag (nicht am Stück, ein hablber Tag wird auch gespeichert) zu haben 1 Punkt</p>
+        <p>Wenn jetzt jemand anderes kommt und das Egg bei ihm findet hören die Punkte automatisch auf zu zählen (sobald das Egg ins Inventar genommen wurde) und das ganze Spiel geht von vorne los</p>
+        <p>Damit das alles so funktioniert wie geplant müssen leider noch ein paar regeln festgelegt werden. Ich bitte euch diese einmal durchzulesen und euch dran zu halten, damit alle gleich viel Spaß haben können. Vielen Dank und viel Spaß beim Spielen!!</p>
+        <h2>Regeln:</h2>
+        <ul>
+            <li>Das Egg muss sofort wieder versteckt werden, sobald es gefunden wurde. Also nicht erst das Egg holen, in ne Chest machen und zwei Tage was bauen bevor ihrs wieder versteckt</li>
+            <li>Das Egg muss in der Welt platziert werden und darf nicht in irgendeiner Chest oder Item Frame abgelegt werden</li>
+            <li>Das Egg muss nicht sichtbar sein, sondern darf auch hinter einer Wand versteckt werden, welche dann irgendwie geöffnet werden muss</li>
+            <li>Das Egg muss mit leerem Inventar erreichbar sein. Alles was doch eventuell sonst gebraucht wird muss vom Versteckenden in irgend einer Weise (Chest, Item Frame, etc...) zur Verfügung gestellt werden</li>
+            <li>Beim Suchen darf nichts zerstört/abgebaut werden, außer es ist explizit vom Versteckenden angegeben (Sign, Book etc...)</li>
+            <li>Das Egg muss zwar mir nichts erreichbar sein, aber Gegenstände zum Abbauen des Eggs (Piston, Lever, etc...) muss jeder selber sorgen und muss nicht vor Ort zur Verfügung gestellt werden</li>
+            <li>Das Suchen des Egg besteht auf eigene Gefahr. Fallen jeglicher Art sind erlaubt (übertreibt es aber bitte trotzdem nicht xD) und ich und der Versteckende übernehmen keine Haftung über verlorene Items im Falle eines grausamen Todes</li>
+            <li>Die Coords die im Buch angegeben werden müssen obv nicht die genauen Coords des Eggs sein, jedoch sollte man bei den Coords klar erkennen können was alles zum Bereich dazugehört</li>
+            <li>Sobald das Egg einmal platziert wurde und die Punkte anfangen zu zählen, darf das Egg nicht umplatziert werden</li>
+            <li>Seid keine Wichser beim Verstecken und macht es so, dass ihr das Egg auch selber suchen würdet (ein Raum mit 1000 Buttons von den 1er der Richtige ist macht keinem Spaß)</li>
+            <li>Wenn ihr im Buch auf "Stimmt[x]" gedrückt habt sollte im Chat für euch "Triggered [hid_egg]" stehen und danach für alle auf dem Server eine Nachricht unter eurem Namen, dass ihr das Egg versteckt habt. Ist irgendwas davon nicht passiert schreibt mir bitte direkt auf Discord (luukewho) damit ich das fixen kann</li>
+            <li>Überprüft ebenfalls danach, dass der Player Head, der links von den Lectern steht, von eurem Skin ist.</li>
+            <li>Solltet ihr euren IGN ändern, gebt mir bitte auch bescheid damit ich die Punkte übernehmen kann</li>
+            <li>Die Regeln können sich jeder Zeit ändern, wenn mit auffällt, dass ich was vergessen habe, oder etwas neues dazukommen muss. Sollten sich Regeln ändern, findet ihr am Spawn ein Schild mit der Info und hier auf der Seite dann die klar markierten Änderungen</li>
+            <li>Jeglicher Regelverstoß kann mit Punkteabzug bestraft werden, aber ich weiß auch das viele Sachen nicht mit Absicht passieren, also macht euch kein Stress wenn was kaputt geht</li>
+            <li>Wenn ihr sonst noch weitere Fragen oder Feedback habt schreibt mir auch gerne. Es ist noch nicht alles perfekt und ich arbeite noch an ein paar Features aber ich bin gerne offen für weitere Vorschläge :3</li>
+        </ul>
+    </div>
+</body>
+
+
